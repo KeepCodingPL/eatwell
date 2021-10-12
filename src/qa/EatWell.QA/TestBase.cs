@@ -5,20 +5,17 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EatWell.QA
 {
-    class TestBase
+    public class TestBase
     {
-        public IWebDriver driver = new ChromeDriver();
+        public static IWebDriver driver = new ChromeDriver();
 
         [SetUp]
         public void startBrowser()
         {
+
             if (driver != null)
             {
 
@@ -40,10 +37,11 @@ namespace EatWell.QA
                 }
             }
 
+
             driver.Navigate().GoToUrl("https://www.techlistic.com/p/selenium-practice-form.html");
 
             driver.Manage().Window.Maximize();
-            
+
 
         }
 
