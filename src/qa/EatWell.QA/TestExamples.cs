@@ -9,25 +9,28 @@ using System.Threading.Tasks;
 
 namespace EatWell.QA
 {
+    
     [TestClass]
     class TestExamples : TestBase
     {
         [Test]
         public void FirstNameTest()
         {
-            driver.Navigate().GoToUrl("https://www.techlistic.com/p/selenium-practice-form.html");
+            
             IWebElement nameBox = driver.FindElement(By.XPath("//input[@name='firstname']"));
             nameBox.SendKeys("Hasbi");
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
+            
         }
 
         [Test]
         public void LastNameTest()
         {
-            driver.Navigate().GoToUrl("https://www.techlistic.com/p/selenium-practice-form.html");
+           
             IWebElement nameBox = driver.FindElement(By.XPath("//input[@name='lastname']"));
             nameBox.SendKeys("KAYNAK");
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
+            
         }
     }
 }
