@@ -6,5 +6,6 @@ namespace EatWell.QA
     [TestClass]
     public class UITests : TestBase
     {
+
     }
 }

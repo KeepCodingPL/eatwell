@@ -5,13 +5,14 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
+using System.Configuration;
 
 namespace EatWell.QA
 {
     public class TestBase
     {
         public static IWebDriver driver = new ChromeDriver();
-
+        
         [SetUp]
         public void startBrowser()
         {
@@ -42,6 +43,7 @@ namespace EatWell.QA
 
             driver.Manage().Window.Maximize();
 
+           
 
         }
 
