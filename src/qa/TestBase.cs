@@ -12,6 +12,7 @@ namespace EatWell.QA
     public class TestBase
     {
         public static IWebDriver driver = new ChromeDriver();
+        string url = ConfigurationManager.AppSettings["url"];
         
         [SetUp]
         public void startBrowser()
@@ -39,7 +40,7 @@ namespace EatWell.QA
             }
 
 
-            driver.Navigate().GoToUrl("https://www.techlistic.com/p/selenium-practice-form.html");
+            driver.Navigate().GoToUrl(url);
 
             driver.Manage().Window.Maximize();
 
