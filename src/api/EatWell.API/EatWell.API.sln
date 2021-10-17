@@ -1,9 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+
+VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EatWell.API", "EatWell.API.csproj", "{F70C7EAC-211F-4DFD-A2F3-643D4D3D3A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EatWell.API", "EatWell.API.csproj", "{0B49B663-9855-40E7-900C-61AFEFA9AA9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +12,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F70C7EAC-211F-4DFD-A2F3-643D4D3D3A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F70C7EAC-211F-4DFD-A2F3-643D4D3D3A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F70C7EAC-211F-4DFD-A2F3-643D4D3D3A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F70C7EAC-211F-4DFD-A2F3-643D4D3D3A61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B49B663-9855-40E7-900C-61AFEFA9AA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B49B663-9855-40E7-900C-61AFEFA9AA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B49B663-9855-40E7-900C-61AFEFA9AA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B49B663-9855-40E7-900C-61AFEFA9AA9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {95E712AD-358F-4BED-BD0A-E7540CC22827}
+		SolutionGuid = {0F7CF047-E99A-4D2D-9833-31F6E0D6E517}
+
 	EndGlobalSection
 EndGlobal
