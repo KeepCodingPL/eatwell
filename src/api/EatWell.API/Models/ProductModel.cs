@@ -7,10 +7,11 @@ namespace EatWell.API.Models
 {
     public class ProductModel
     {
+        public int IdProduct { get; set; }
         public string Name { get; set; }
         public string Brand { get; set; }
 
-        List<string> Ingredients = new List<string>();
+        public List<string> Ingredients = new List<string>();
 
         public bool IsVegan { get; set; }
         public bool IsVegeterian { get; set; }
