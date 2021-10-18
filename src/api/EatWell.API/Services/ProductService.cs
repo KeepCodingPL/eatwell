@@ -4,6 +4,7 @@ namespace EatWell.API.Services
 {
     using Persistence;
     using Models;
+    
     public class ProductService : IProductService
     {
         private readonly IProductPersistenceService _productPersistenceService;
@@ -13,10 +14,26 @@ namespace EatWell.API.Services
             _productPersistenceService = productPersistenceService;
         }
 
-        public void UpdateProduct(ProductModel product)
+        
+
+        public void UpdateProduct(int idProduct, string productName, string productBrand)
         {
-            var product = new ProductModel { };
-            _productPersistenceService.UpdateProduct();
+            ProductModel product = Products.Find(idProduct,productName,productBrand);
+
+           
+            var productDb = new ProductModel
+            {
+                IdProduct = product.IdProduct,
+                Name = product.Name,
+                Brand = product.Brand,
+                Ingredients = product.Ingredients,
+                IsVegeterian = product.IsVegeterian,
+                IsVegan = product.IsVegan,
+                IsHalal = product.IsHalal
+            };
+
+            _productPersistenceService.UpdateProduct(productDb);
+
         }
     }
 }

@@ -3,6 +3,6 @@
     using Models;
     public interface IProductService
     {
-        void UpdateProduct(ProductModel product);
+        void UpdateProduct(int idProduct,string productName,string productBrand);
     }
 }
