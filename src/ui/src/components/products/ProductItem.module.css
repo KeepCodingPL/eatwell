@@ -1,5 +1,6 @@
 .item {
-    margin: 1rem 0;
+    margin: 1rem;
+    flex-basis: 20%;
 }
 
 .image {
@@ -19,11 +20,21 @@
 .content {
     text-align: center;
     padding: 1rem;
+    height: 15vh;
+    overflow: scroll;
 }
 
 .content h3 {
     font-size: 1.25rem;
     color: #2c292b;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.content:hover {
+    cursor: pointer;
 }
 
 .actions {

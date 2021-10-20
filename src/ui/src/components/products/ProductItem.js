@@ -3,7 +3,7 @@ import classes from './ProductItem.module.css';
 
 const ProductItem = (props) => {
     return (
-        <li className={classes.item}>
+        <div className={classes.item}>
             <Card>
                 <div className={classes.image}>
                     <img src={props.image} alt={props.title} />
@@ -17,7 +17,7 @@ const ProductItem = (props) => {
                     <button>Delete</button>
                 </div>
             </Card>
-        </li>
+        </div>
     );
 };
 

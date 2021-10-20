@@ -3,7 +3,7 @@ import classes from './ProductList.module.css';
 
 const ProductList = (props) => {
     return (
-        <ul className={classes.list}>
+        <div className={classes.list}>
             {props.products.map((product) => (
                 <ProductItem
                     key={product.id}
@@ -13,7 +13,7 @@ const ProductList = (props) => {
                     description={product.description}
                 />
             ))}
-        </ul>
+        </div>
     );
 };
 
