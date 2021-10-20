@@ -1,11 +1,12 @@
 ﻿namespace EatWell.API.Persistence
 {
     using Models;
+    using System.Collections.Generic;
+
     public interface IProductRepository
     {
-        void CreateProduct(ProductModel product);
+        void DeleteProduct(int id);
 
-        void UpdateProduct(ProductModel product);
 
     }
 }

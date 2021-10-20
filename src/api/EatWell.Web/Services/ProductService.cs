@@ -4,7 +4,8 @@ namespace EatWell.API.Services
 {
     using Persistence;
     using Models;
-    
+    using System.Collections.Generic;
+
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
@@ -13,19 +14,9 @@ namespace EatWell.API.Services
         {
             _productRepository = productRepository;
         }
-
-        public void CreateProduct(ProductModel product)
+        public void SellProduct(int id)
         {
-
-            _productRepository.CreateProduct(product);
-
-        }
-
-        public void UpdateProduct(ProductModel product)
-        {
-
-            _productRepository.UpdateProduct(product);
- 
+            _productRepository.DeleteProduct(id);
         }
     }
 }

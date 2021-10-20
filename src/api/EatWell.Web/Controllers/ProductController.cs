@@ -17,17 +17,11 @@ namespace EatWell.API.Controllers
             _productService = productService;
         }
 
-        [HttpPost]
-        public IActionResult CreateProduct (ProductModel product)
+        [HttpDelete]
+        public IActionResult SellProduct(int id)
         {
-            _productService.CreateProduct(product);
-            return Ok();
-        }
+            _productService.SellProduct(id);
 
-        [HttpPut]
-        public IActionResult UpdatePorduct(ProductModel product)
-        {
-            _productService.UpdateProduct(product);
             return Ok();
         }
     }

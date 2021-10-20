@@ -1,6 +1,8 @@
 ﻿using EatWell.API.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace EatWell.API.Persistence
 {
@@ -8,33 +10,19 @@ namespace EatWell.API.Persistence
     {
 
         private readonly List<ProductModel> _source;
+        private readonly EatWellContext _eatWellContext;
 
 
-        public ProductRepository()
+        public ProductRepository(EatWellContext eatWellContext)
         {
-
-            _source = new List<ProductModel>();
-        }
-        public void CreateProduct(ProductModel product)
-        {
-            _source.Add(product);
+            _eatWellContext = eatWellContext; 
         }
 
-
-        public void UpdateProduct(ProductModel product)
+        public void DeleteProduct(int id)
         {
+            var product = _eatWellContext.Products.Single(c => c.IdProduct == id);
 
-            var productInList = _source.Find(p => p.IdProduct == product.IdProduct);
-            if (productInList is null)
-            {
-                throw new Exception("product not defined");
-            }
-            productInList.Name = product.Name;
-            productInList.Brand = product.Brand;
-            productInList.Ingredients = product.Ingredients;
-            productInList.IsVegeterian = product.IsVegeterian;
-            productInList.IsVegan = product.IsVegan;
-            productInList.IsHalal = product.IsHalal;
+            _eatWellContext.Products.Remove(product);
         }
     }
 }
