@@ -1,0 +1,25 @@
+trigger:
+  paths:
+    include: # Include!
+    - 'src/mobile/*'
+    
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+  - name: stageName
+    value: "First stage"
+
+jobs:
+
+- job: Mobile 
+  displayName: Mobile_build 
+  workspace:
+    clean: all
+  # variables:
+  #   - group: Eat_Well_Variable_Group
+  # steps:
+  #   - template: src/devops/yaml/backend.yml
+ 
