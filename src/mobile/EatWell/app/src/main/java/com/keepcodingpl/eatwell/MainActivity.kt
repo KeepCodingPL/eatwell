@@ -2,9 +2,9 @@ package com.keepcodingpl.eatwell
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.keepcodingpl.eatwell.Adapter.ViewPagerAdapter
-import com.keepcodingpl.eatwell.FeedFragment.FeedFragment
-import com.keepcodingpl.eatwell.MyPostsFragment.MyPostsFragment
+import com.keepcodingpl.eatwell.adapter.ViewPagerAdapter
+import com.keepcodingpl.eatwell.feed_fragment.FeedFragment
+import com.keepcodingpl.eatwell.mypostsfragment.MyPostsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
