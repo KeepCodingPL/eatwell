@@ -27,13 +27,11 @@ class FeedViewModel(application: Application) : AndroidViewModel(application)  {
                 .subscribeWith(object : DisposableSingleObserver<List<Meal>>(){
                     override fun onSuccess(t: List<Meal>) {
                         meals.value=t
-//                        storeInSQLite(t)
-//                        Toast.makeText(getApplication(),"Countries From API",Toast.LENGTH_LONG).show()
+
                     }
 
                     override fun onError(e: Throwable) {
-//                        countryLoading.value = false
-//                        countryError.value = true
+
                         e.printStackTrace()
                     }
 

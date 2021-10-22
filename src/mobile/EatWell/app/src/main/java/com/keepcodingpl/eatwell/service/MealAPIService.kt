@@ -16,7 +16,7 @@ class MealAPIService {
 
     private val api= Retrofit.Builder().baseUrl(BASE_URL ).addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build().create(MealsApı::class.java)
+            .build().create(MealsApi::class.java)
 
 
     fun getData (): Single<List<Meal>> {
