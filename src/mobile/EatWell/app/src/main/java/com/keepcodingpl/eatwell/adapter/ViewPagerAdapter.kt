@@ -1,4 +1,4 @@
-package com.keepcodingpl.eatwell.Adapter
+package com.keepcodingpl.eatwell.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -1,4 +1,4 @@
-package com.keepcodingpl.eatwell.MyPostsFragment
+package com.keepcodingpl.eatwell.mypostsfragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
