@@ -22,6 +22,7 @@ namespace EatWell.QA
             Assert.AreEqual(newProductUrl, currentUrl);
             Thread.Sleep(2000);
         }
+
         [Test]
         public void AllProductsClick()
         {
