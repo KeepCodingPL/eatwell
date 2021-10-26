@@ -1,24 +1,18 @@
 trigger:
   paths:
-    include: # Include!
+    include:
     - 'src/ui/*'
   
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
-variables:
-  - name: buildConfiguration
-    value: 'Release'
-  - name: stageName
-    value: "First stage"
-
-jobs:
-
-- job: UI
-  displayName: UI_Build 
-  workspace:
-    clean: all
-  # variables:
-  #   - group: Eat_Well_Variable_Group
-  # steps:
-  #   - template: src/devops/yaml/backend.yml
+steps:
+  - task: NodeTool@0
+    inputs:    
+      versionSpec: '14.x'
+      checkLatest: true
+        
+  - script: |
+      npm install
+      npm run build
+    displayName: 'npm install and build'
