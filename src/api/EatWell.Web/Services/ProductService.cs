@@ -1,4 +1,5 @@
-﻿using EatWell.API.Models;
+﻿using System.Collections.Generic;
+using EatWell.API.Models;
 
 namespace EatWell.API.Services
 {
@@ -19,6 +20,11 @@ namespace EatWell.API.Services
 
             _productRepository.CreateProduct(product);
 
+        }
+
+        public IEnumerable<ProductModel> GetProducts()
+        {
+            return _productRepository.GetProducts();
         }
 
         public void UpdateProduct(ProductModel product)
