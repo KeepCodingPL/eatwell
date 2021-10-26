@@ -7,6 +7,7 @@
     {
         void DeleteProduct(int id);
 
+        void UpdateProduct(ProductRequest product);
 
     }
 }

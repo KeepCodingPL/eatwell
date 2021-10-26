@@ -8,9 +8,9 @@ namespace EatWell.API.Persistence
     {
         public EatWellContext()
         {
-            Products = new List<ProductModel>();
+            Products = new List<ProductRequest>();
         }
-        public ICollection<ProductModel> Products { get; set; }
+        public ICollection<ProductRequest> Products { get; set; }
     }
 }
  
