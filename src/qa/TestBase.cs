@@ -39,13 +39,9 @@ namespace EatWell.QA
                 }
             }
 
-
             driver.Navigate().GoToUrl(url);
 
             driver.Manage().Window.Maximize();
-
-           
-
         }
 
         [TearDown]

@@ -11,13 +11,22 @@ namespace EatWell.QA
     [TestClass]
     public class UITests : TestBase
     {
-        [Test]
-        public void AddNewProductClick()
-        
+        private readonly IPage _page;
+       // IPage Page;
+
+        public UITests()
         {
-            IWebElement addNewProductClick = driver.FindElement(By.XPath("//a[text()='Add New Product']"));
-            addNewProductClick.Click();
-            string newProductUrl = "http://localhost:3000/new-product"; 
+           // _page = Page;
+        }
+
+        [Test]
+        public void AddNewProductClick()     
+        {
+            //Click the Add New Product Button
+            _page.ClickAddNewProduct(driver);
+
+            //Assert
+            string newProductUrl = "http://localhost:3000/new-product"; //move to the  AppConfig
             string currentUrl = driver.Url;
             Assert.AreEqual(newProductUrl, currentUrl);
             Thread.Sleep(2000);
