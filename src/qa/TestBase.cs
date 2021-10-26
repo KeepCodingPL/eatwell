@@ -4,7 +4,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using System;
 using System.Configuration;
 
 namespace EatWell.QA
@@ -21,7 +20,7 @@ namespace EatWell.QA
             if (driver != null)
             {
 
-                String browser = "Chrome";
+                string browser = "Chrome";
                 switch (browser)
                 {
                     case "Chrome":
