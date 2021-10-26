@@ -12,11 +12,10 @@ namespace EatWell.QA
     public class UITests : TestBase
     {
         private readonly IPage _page;
-       // IPage Page;
 
-        public UITests()
+        public UITests(IPage Page)
         {
-           // _page = Page;
+           _page = Page;
         }
 
         [Test]
