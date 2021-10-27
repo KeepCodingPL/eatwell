@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EatWell.API.Models
 {
-    public class ProductRequest
+    public class ProductModel
     {
         public int IdProduct { get; set; }
         public string Name { get; set; }

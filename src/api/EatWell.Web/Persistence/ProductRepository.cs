@@ -9,7 +9,7 @@ namespace EatWell.API.Persistence
     public class ProductRepository : IProductRepository
     {
 
-        private readonly List<ProductRequest> _source;
+        private readonly List<ProductModel> _source;
         private readonly EatWellContext _eatWellContext;
 
 
@@ -20,11 +20,11 @@ namespace EatWell.API.Persistence
 
         public void DeleteProduct(int id)
         {
-            var product = _eatWellContext.Products.Single(c => c.IdProduct == id);
+            var product = _source.Single(c => c.IdProduct == id);
 
             _eatWellContext.Products.Remove(product);
         }
-        public void UpdateProduct(ProductRequest product)
+        public void UpdateProduct(ProductModel product)
         {
 
             var productInList = _source.Find(p => p.IdProduct == product.IdProduct);

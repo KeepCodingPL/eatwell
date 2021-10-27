@@ -5,8 +5,8 @@
 
     public interface IProductService
     {
-        void ConsistentProduct(int id);
+        void DeleteProduct(int id);
 
-        void UpdateProduct(ProductRequest product);
+        void UpdateProduct(ProductModel product);
     }
 }

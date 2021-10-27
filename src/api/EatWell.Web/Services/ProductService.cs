@@ -14,12 +14,12 @@ namespace EatWell.API.Services
         {
             _productRepository = productRepository;
         }
-        public void ConsistentProduct(int id)
+        public void DeleteProduct(int id)
         {
             _productRepository.DeleteProduct(id);
         }
 
-        public void UpdateProduct(ProductRequest product)
+        public void UpdateProduct(ProductModel product)
         {
 
             _productRepository.UpdateProduct(product);
