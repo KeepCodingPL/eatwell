@@ -1,6 +1,7 @@
 ﻿using EatWell.API.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EatWell.API.Persistence
 {
@@ -15,9 +16,15 @@ namespace EatWell.API.Persistence
 
             _source = new List<ProductModel>();
         }
+
         public void CreateProduct(ProductModel product)
         {
             _source.Add(product);
+        }
+
+        public IEnumerable<ProductModel> GetProducts()
+        {
+           return _source.ToList();
         }
 
 

@@ -24,6 +24,13 @@ namespace EatWell.API.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult GetProducts()
+        {
+            var products = _productService.GetProducts();
+            return Ok(products);
+        }
+
         [HttpPut]
         public IActionResult UpdatePorduct(ProductModel product)
         {
