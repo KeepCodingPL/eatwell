@@ -19,9 +19,16 @@ namespace EatWell.API.Persistence
 
         public void CreateProduct(ProductModel product)
         {
-            _source.Add(product);
+            _eatWellContext = eatWellContext; 
         }
 
+
+        public void DeleteProduct(int id)
+        {
+            var product = _source.Single(c => c.IdProduct == id);
+
+        }
+        
         public IEnumerable<ProductModel> GetProducts()
         {
            return _source.ToList();
