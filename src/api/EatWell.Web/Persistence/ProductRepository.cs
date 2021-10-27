@@ -3,27 +3,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace EatWell.API.Persistence
 {
     public class ProductRepository : IProductRepository
     {
 
         private readonly List<ProductModel> _source;
-        private readonly EatWellContext _eatWellContext;
 
 
-        public ProductRepository(EatWellContext eatWellContext)
+        public ProductRepository()
+        {
+
+            _source = new List<ProductModel>();
+        }
+
+        public void CreateProduct(ProductModel product)
         {
             _eatWellContext = eatWellContext; 
         }
+
 
         public void DeleteProduct(int id)
         {
             var product = _source.Single(c => c.IdProduct == id);
 
-            _eatWellContext.Products.Remove(product);
         }
+        
+        public IEnumerable<ProductModel> GetProducts()
+        {
+           return _source.ToList();
+        }
+
+
         public void UpdateProduct(ProductModel product)
         {
 

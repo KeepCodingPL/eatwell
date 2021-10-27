@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EatWell</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_button">Add Button</string>
+    <string name="meal_photo">Meal Photo</string>
+    <string name="meal_name">Ürün Adı</string>
+    <string name="vegan">Vegan</string>
+</resources>

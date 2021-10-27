@@ -1,0 +1,33 @@
+trigger:
+  branches:
+   include:
+    - main
+    - Release-CRUD
+  paths:
+    include:
+    - 'src/api/*'
+  
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  SolutionPath: 'src/api/EatWell.Web/EatWell.API.sln'
+  BuildConfiguration: 'Release'
+
+steps:
+ - task: DotNetCoreCLI@2
+   displayName: 'Publish and zip'
+   inputs:
+    command: publish
+    publishWebProjects: False
+    projects: $(SolutionPath)
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+ - task: AzureWebApp@1
+   displayName: 'Deploy Azure Web App'
+   inputs:
+    azureSubscription: 'azure_connection'
+    appName: 'EW-API-TEST'
+    appType: 'webApp'
+    package: $(Build.ArtifactStagingDirectory)/**/*.zip
