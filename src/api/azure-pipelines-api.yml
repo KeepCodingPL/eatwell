@@ -1,0 +1,26 @@
+trigger:
+  paths:
+    include:
+    - 'src/api/*'
+  
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  stageName: "First stage" 
+  # csproj file path needs to be assigned as a path to the solution variable.
+  solution: 'src\api\WebApplication1\WebApplication1\WebApplication1.csproj'
+  buildPlatform: 'Any CPU'
+
+jobs:
+
+- job: Backend
+  displayName: Backend_Build 
+  workspace:
+    clean: all
+  # variables:
+  #   - group: Eat_Well_Variable_Group
+  steps:
+    - template: ../devops/yaml/backend.yml
+ 

@@ -1,0 +1,29 @@
+# This yaml files refers to the root pipeline. 
+# This yaml file can be edited incase of any necessity.
+
+trigger:
+  paths:
+    exclude: # Exclude!
+      - 'src/ui/*'
+      - 'src/api/*'
+      - 'src/mobile/*'
+      - 'src/qa/*'
+      - 'src/devops/*'
+  
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+jobs:
+
+- job: Root
+  displayName: Root_pipeline
+  workspace:
+    clean: all
+  # variables:
+  #   - group: Eat_Well_Variable_Group
+  # steps:
+  # - template: devops/yaml/backend.yml
+
