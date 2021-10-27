@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EatWell.API", "EatWell.API.csproj", "{DC6BF5FC-DA61-41F0-B199-37B592E6863A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatWell.API.Test", "..\EatWell.API.Test\EatWell.API.Test.csproj", "{BF84080F-A495-4EC6-90B1-2541B89F2A5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DC6BF5FC-DA61-41F0-B199-37B592E6863A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC6BF5FC-DA61-41F0-B199-37B592E6863A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC6BF5FC-DA61-41F0-B199-37B592E6863A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF84080F-A495-4EC6-90B1-2541B89F2A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF84080F-A495-4EC6-90B1-2541B89F2A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF84080F-A495-4EC6-90B1-2541B89F2A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF84080F-A495-4EC6-90B1-2541B89F2A5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
