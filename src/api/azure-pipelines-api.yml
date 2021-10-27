@@ -4,23 +4,26 @@ trigger:
     - 'src/api/*'
   
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Release'
-  stageName: "First stage" 
-  # csproj file path needs to be assigned as a path to the solution variable.
-  solution: 'src\api\WebApplication1\WebApplication1\WebApplication1.csproj'
-  buildPlatform: 'Any CPU'
+  SolutionPath: 'src/api/EatWell.Web/EatWell.API.sln'
+  BuildConfiguration: 'Release'
 
-jobs:
+steps:
+ - task: DotNetCoreCLI@2
+   displayName: 'Publish and zip'
+   inputs:
+    command: publish
+    publishWebProjects: False
+    projects: $(SolutionPath)
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
 
-- job: Backend
-  displayName: Backend_Build 
-  workspace:
-    clean: all
-  # variables:
-  #   - group: Eat_Well_Variable_Group
-  steps:
-    - template: ../devops/yaml/backend.yml
- 
+ - task: AzureWebApp@1
+   displayName: 'Deploy Azure Web App'
+   inputs:
+    azureSubscription: 'azure_connection'
+    appName: 'EW-API-TEST'
+    appType: 'webApp'
+    package: $(Build.ArtifactStagingDirectory)/**/*.zip
