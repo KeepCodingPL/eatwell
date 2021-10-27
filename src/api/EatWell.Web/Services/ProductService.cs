@@ -15,6 +15,14 @@ namespace EatWell.API.Services
         {
             _productRepository = productRepository;
         }
+
+        public void CreateProduct(ProductModel product)
+        {
+
+            _productRepository.CreateProduct(product);
+
+        }
+
         public void DeleteProduct(int id)
         {
             _productRepository.DeleteProduct(id);

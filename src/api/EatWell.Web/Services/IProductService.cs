@@ -11,7 +11,6 @@ namespace EatWell.API.Services
 
         void DeleteProduct(int id);
 
-
         void CreateProduct(ProductModel product);
 
         IEnumerable<ProductModel> GetProducts();

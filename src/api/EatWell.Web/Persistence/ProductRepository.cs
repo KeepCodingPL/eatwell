@@ -11,17 +11,16 @@ namespace EatWell.API.Persistence
         private readonly List<ProductModel> _source;
 
 
+
         public ProductRepository()
         {
 
             _source = new List<ProductModel>();
         }
-
         public void CreateProduct(ProductModel product)
         {
-            _eatWellContext = eatWellContext; 
+            _source.Add(product);
         }
-
 
         public void DeleteProduct(int id)
         {
