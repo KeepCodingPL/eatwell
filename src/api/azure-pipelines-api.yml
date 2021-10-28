@@ -15,7 +15,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  SolutionPath: 'src/api/EatWell.Web/EatWell.API.sln'
+  ProjectPath: 'src/api/EatWell.Web/EatWell.API.csproj'
   BuildConfiguration: 'Release'
 
 steps:
@@ -24,7 +24,7 @@ steps:
    inputs:
     command: publish
     publishWebProjects: False
-    projects: $(SolutionPath)
+    projects: $(ProjectPath)
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
