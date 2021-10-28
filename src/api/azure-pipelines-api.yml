@@ -1,11 +1,15 @@
 trigger:
   branches:
-   include:
-    - main
-    - Release-CRUD
+    include:
+    - development
   paths:
     include:
     - 'src/api/*'
+
+pr:
+   branches:
+    exclude:
+    - '*'  
   
 pool:
   vmImage: 'ubuntu-latest'
