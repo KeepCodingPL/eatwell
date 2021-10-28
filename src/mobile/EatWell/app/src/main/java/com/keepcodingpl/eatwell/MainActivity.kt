@@ -10,7 +10,6 @@ import com.keepcodingpl.eatwell.mypostsfragment.MyPostsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,14 +18,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        createViewPager()
-    }
-
-    private fun createViewPager() {
-        viewPagerAdapter.addFragment(FeedFragment(), "FEED")
-        viewPagerAdapter.addFragment(MyPostsFragment(), "MY POSTS")
-        binding.viewPager.adapter = viewPagerAdapter
-        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 
 }

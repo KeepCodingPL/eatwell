@@ -3,8 +3,10 @@ package com.keepcodingpl.eatwell.feed_fragment.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.keepcodingpl.eatwell.databinding.ItemMealBinding
+import com.keepcodingpl.eatwell.main_fragment.MainFragmentDirections
 import com.keepcodingpl.eatwell.model.Meal
 
 class FeedFragmentAdapter(private val mealList: ArrayList<Meal>) :
@@ -19,6 +21,11 @@ class FeedFragmentAdapter(private val mealList: ArrayList<Meal>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.meal = mealList[position]
+
+        holder.binding.root.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(holder.binding.mealNameXML.text.toString())
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun getItemCount() = mealList.size

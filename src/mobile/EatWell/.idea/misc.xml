@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/suley/Documents/GitHub/eatwell/src/mobile/EatWell/app/src/main/res/layout/activity_main.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/suley/Documents/GitHub/eatwell/src/mobile/EatWell/app/src/main/res/layout/fragment_details.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/suley/Documents/GitHub/eatwell/src/mobile/EatWell/app/src/main/res/layout/fragment_feed.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/suley/Documents/GitHub/eatwell/src/mobile/EatWell/app/src/main/res/layout/fragment_main.xml" value="0.23505434782608695" />
         <entry key="..\:/Users/suley/Documents/GitHub/eatwell/src/mobile/EatWell/app/src/main/res/layout/fragment_my_posts.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/suley/Documents/GitHub/eatwell/src/mobile/EatWell/app/src/main/res/layout/item_meal.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yusuf/AndroidStudioProjects/eatwell/src/mobile/EatWell/app/src/main/res/layout/activity_main.xml" value="0.203125" />
         <entry key="app/src/main/res/layout/fragment_feed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_meal.xml" value="0.12681159420289856" />
