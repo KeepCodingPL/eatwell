@@ -1,11 +1,15 @@
 trigger:
   branches:
-   include:
-    - main
-    - Release-CRUD
+    include:
+    - development
   paths:
     include:
     - 'src/ui/*'
+
+pr:
+   branches:
+    exclude:
+    - '*'  
   
 variables:
   uiSource: "src/ui"
