@@ -1,7 +1,15 @@
 trigger:
+  branches:
+    include:
+    - development
   paths:
-    include: # Include!
+    include:
     - 'src/qa/*'
+
+pr:
+   branches:
+    exclude:
+    - '*'  
   
 pool:
   vmImage: 'windows-latest'
