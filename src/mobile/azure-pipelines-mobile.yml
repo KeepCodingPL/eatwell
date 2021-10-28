@@ -1,7 +1,15 @@
 trigger:
+  branches:
+    include:
+    - development
   paths:
-    include: # Include!
+    include:
     - 'src/mobile/*'
+
+pr:
+   branches:
+    exclude:
+    - '*'  
     
 pool:
   vmImage: 'windows-latest'
