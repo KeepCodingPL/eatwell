@@ -2,7 +2,7 @@ package com.keepcodingpl.eatwell.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+
 
 @kotlinx.parcelize.Parcelize
 data class Meal(
@@ -15,7 +15,8 @@ data class Meal(
     val tarifi: String?,
 
     val resim: String?
-):Parcelable
+) : Parcelable
+
 
 
 
