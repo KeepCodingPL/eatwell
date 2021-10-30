@@ -45,6 +45,7 @@ class FeedFragment : Fragment(R.layout.fragment_feed) {
             meal?.let {
                 feedBinding.mealsList.visibility = View.VISIBLE
                 mealAdapter.updateList(meal)
+
             }
         })
     }
