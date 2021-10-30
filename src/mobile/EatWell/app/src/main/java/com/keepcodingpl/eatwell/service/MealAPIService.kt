@@ -23,4 +23,8 @@ class MealAPIService {
         return api.getMeals()
     }
 
+    fun getDetails () : Single<Meal> {
+        return api.getMealDetail()
+    }
+
 }

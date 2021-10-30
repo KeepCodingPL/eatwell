@@ -12,5 +12,9 @@ interface MealsApi {
     @GET("Fatih-Baser/mealsjson/master/db.json")
     fun getMeals(): Single<List<Meal>>
 
+    // For getting just one product for details.
+    @GET()
+    fun getMealDetail() : Single<Meal>
+
 
 }
