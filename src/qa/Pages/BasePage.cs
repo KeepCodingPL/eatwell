@@ -1,12 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenQA.Selenium;
 
 namespace EatWell.QA.Pages
 {
-    class BasePage
+    public abstract class BasePage : DriverManager
     {
+        #region Paths
+
+        string addNewProductClickBtnPath = "//a[text()='Add New Product']";
+
+        #endregion
+
+        #region PageMethods
+
+        public void ClickAddNewProduct()
+        {
+            IWebElement addNewProductClick = driver.FindElement(By.XPath(addNewProductClickBtnPath));
+            addNewProductClick.Click();
+        }
+
+        #endregion
+
+        #region UtilityMethods
+
+        public bool URLComparison(string currentUrl, string expectedUrl)
+        {
+            if (currentUrl.Equals(expectedUrl))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
