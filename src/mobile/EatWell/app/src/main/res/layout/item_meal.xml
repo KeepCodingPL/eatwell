@@ -18,9 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="@{meal.mealName}">
-        </TextView>
 
+            >
+        </TextView>
+<!--        android:text="@{meal.mealName}"-->
 
         <ImageView
             android:id="@+id/imageView"
@@ -28,9 +29,10 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:padding="3dp"
-            android:downloadUrl="@{meal.resim}"
+
             android:src="@mipmap/ic_launcher_round"
             android:contentDescription="@string/meal_photo">
+<!--            android:downloadUrl="@{meal.resim}"-->
 
         </ImageView>
         <LinearLayout
@@ -45,12 +47,12 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{meal.mealName}"
+
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:padding="5dp">
-
+<!--                android:text="@{meal.mealName}"-->
 
             </TextView>
 

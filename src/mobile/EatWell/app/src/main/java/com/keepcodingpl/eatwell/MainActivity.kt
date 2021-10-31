@@ -3,10 +3,7 @@ package com.keepcodingpl.eatwell
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.keepcodingpl.eatwell.adapter.ViewPagerAdapter
 import com.keepcodingpl.eatwell.databinding.ActivityMainBinding
-import com.keepcodingpl.eatwell.feed_fragment.FeedFragment
-import com.keepcodingpl.eatwell.mypostsfragment.MyPostsFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
