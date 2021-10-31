@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addProductFragment"
+            app:destination="@id/addProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -20,4 +23,8 @@
             android:name="mealName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/addProductFragment"
+        android:name="com.keepcodingpl.eatwell.add_product.AddProductFragment"
+        android:label="AddProductFragment" />
 </navigation>
