@@ -91,6 +91,8 @@
   <ItemGroup>
     <Compile Include="DriverManager.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Pages\AddNewProductPage.cs" />
+    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="UITests.cs" />
