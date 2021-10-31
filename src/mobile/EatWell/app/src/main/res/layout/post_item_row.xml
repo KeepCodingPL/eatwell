@@ -5,7 +5,7 @@
 
         <variable
             name="post"
-            type="com.keepcodingpl.eatwell.model.Meal" />
+            type="com.keepcodingpl.eatwell.model.Post" />
 
     </data>
 
@@ -19,7 +19,7 @@
             android:id="@+id/postMealName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/meal_name"
+            android:text="@{post.postName}"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -28,7 +28,7 @@
             android:id="@+id/postMealCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/vegan"
+            android:text="@{post.postCategory}"
             android:textColor="@color/black"
             android:textSize="12sp">
 
