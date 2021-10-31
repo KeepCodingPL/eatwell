@@ -9,43 +9,14 @@ using System.Configuration;
 
 namespace EatWell.QA
 {
-    public class TestBase
+    public class TestBase : DriverManager
     {
-        public static IWebDriver driver = new ChromeDriver();
-        string url = ConfigurationManager.AppSettings["url"];
-        
         [SetUp]
         public void startBrowser()
         {
-
-            if (driver != null)
-            {
-
-                String browser = "Chrome";
-                switch (browser)
-                {
-                    case "Chrome":
-                        driver = new ChromeDriver();
-                        break;
-                    case "Firefox":
-                        driver = new FirefoxDriver();
-                        break;
-                    case "IE":
-                        driver = new InternetExplorerDriver();
-                        break;
-                    case "Edge":
-                        driver = new EdgeDriver();
-                        break;
-                }
-            }
-
-
             driver.Navigate().GoToUrl(url);
 
             driver.Manage().Window.Maximize();
-
-           
-
         }
 
         [TearDown]
@@ -55,4 +26,6 @@ namespace EatWell.QA
                 driver.Quit();
         }
     }
+
+   
 }
