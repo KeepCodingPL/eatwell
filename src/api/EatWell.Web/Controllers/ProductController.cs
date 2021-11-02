@@ -31,7 +31,7 @@ namespace EatWell.API.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{idProduct}")]
         public IActionResult UpdatePorduct(ProductModel product)
         {
             _productService.UpdateProduct(product);
