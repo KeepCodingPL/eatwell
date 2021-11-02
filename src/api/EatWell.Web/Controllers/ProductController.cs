@@ -12,6 +12,11 @@ namespace EatWell.API.Controllers
     {
         private readonly IProductService _productService;
 
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         [HttpGet]
         public IActionResult GetProducts()
         {
@@ -24,11 +29,6 @@ namespace EatWell.API.Controllers
         {
             _productService.CreateProduct(product);
             return Ok();
-        }
-
-        public ProductController(IProductService productService)
-        {
-            _productService = productService;
         }
 
         [HttpPut]

@@ -2,52 +2,63 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace EatWell.API.Persistence
 {
     public class ProductRepository : IProductRepository
     {
 
-        private readonly List<ProductModel> _source;
+        private readonly EatWellContext _eatWellContext;
 
-
-
-        public ProductRepository()
+        public ProductRepository(EatWellContext eatWellContext)
         {
-
-            _source = new List<ProductModel>();
+            _eatWellContext = eatWellContext;
         }
         public void CreateProduct(ProductModel product)
         {
-            _source.Add(product);
+            _eatWellContext.Products.Add(new ProductModel()
+            {
+                IdProduct = product.IdProduct,
+                Name = product.Name,
+                Brand = product.Brand,
+                Ingredients = product.Ingredients,
+                IsHalal = product.IsHalal,
+                IsVegan = product.IsVegan,
+                IsVegeterian = product.IsVegeterian
+            });
+            _eatWellContext.SaveChanges();
         }
 
         public void DeleteProduct(int id)
         {
-            var product = _source.Single(c => c.IdProduct == id);
-
+            var product = _eatWellContext.Products.First(p => p.IdProduct == id);
+            _eatWellContext.Entry(product).State = EntityState.Deleted;
+            _eatWellContext.SaveChanges();
         }
         
         public IEnumerable<ProductModel> GetProducts()
         {
-           return _source.ToList();
+           return _eatWellContext.Products.ToList();
         }
 
 
         public void UpdateProduct(ProductModel product)
         {
-
-            var productInList = _source.Find(p => p.IdProduct == product.IdProduct);
+            var productInList = _eatWellContext.Products.First(p => p.IdProduct == product.IdProduct);
+            
             if (productInList is null)
             {
                 throw new Exception("product not defined");
             }
-            productInList.Name = product.Name;
-            productInList.Brand = product.Brand;
-            productInList.Ingredients = product.Ingredients;
-            productInList.IsVegeterian = product.IsVegeterian;
-            productInList.IsVegan = product.IsVegan;
-            productInList.IsHalal = product.IsHalal;
+
+                productInList.Name = product.Name;
+                productInList.Brand = product.Brand;
+                productInList.Ingredients = product.Ingredients;
+                productInList.IsVegeterian = product.IsVegeterian;
+                productInList.IsVegan = product.IsVegan;
+                productInList.IsHalal = product.IsHalal;
+
         }
     }
 }
