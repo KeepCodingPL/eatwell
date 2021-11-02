@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace EatWell.Web
 {
@@ -28,9 +29,12 @@ namespace EatWell.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+            services.AddDbContext<EatWellContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("EatWellDatabase")));
+
             services.AddTransient<IProductRepository, ProductRepository>()
-                    .AddTransient<IProductService, ProductService>()
-                    .AddSingleton<EatWellContext>();
+                    .AddTransient<IProductService, ProductService>();
             
 
             services.AddControllers();
@@ -41,7 +45,7 @@ namespace EatWell.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,EatWellContext db)
         {
             if (env.IsDevelopment())
             {
@@ -49,6 +53,8 @@ namespace EatWell.Web
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EatWell.Web v1"));
             }
+
+            db.Database.EnsureCreated();
 
             app.UseHttpsRedirection();
 
