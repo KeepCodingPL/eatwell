@@ -8,7 +8,6 @@ namespace EatWell.API.Persistence
 {
     public class ProductRepository : IProductRepository
     {
-
         private readonly EatWellContext _eatWellContext;
 
         public ProductRepository(EatWellContext eatWellContext)
@@ -32,7 +31,7 @@ namespace EatWell.API.Persistence
 
         public void DeleteProduct(int id)
         {
-            var product = _eatWellContext.Products.First(p => p.IdProduct == id);
+            var product = _eatWellContext.Products.FirstOrDefault(p => p.IdProduct == id);
             _eatWellContext.Entry(product).State = EntityState.Deleted;
             _eatWellContext.SaveChanges();
         }
@@ -45,20 +44,20 @@ namespace EatWell.API.Persistence
 
         public void UpdateProduct(ProductModel product)
         {
-            var productInList = _eatWellContext.Products.First(p => p.IdProduct == product.IdProduct);
+            var productInList = _eatWellContext.Products.FirstOrDefault(p => p.IdProduct == product.IdProduct);
             
             if (productInList is null)
             {
-                throw new Exception("product not defined");
+                throw new Exception("Product not defined");
             }
+            productInList.Name = product.Name;
+            productInList.Brand = product.Brand;
+            productInList.Ingredients = product.Ingredients;
+            productInList.IsVegeterian = product.IsVegeterian;
+            productInList.IsVegan = product.IsVegan;
+            productInList.IsHalal = product.IsHalal;
 
-                productInList.Name = product.Name;
-                productInList.Brand = product.Brand;
-                productInList.Ingredients = product.Ingredients;
-                productInList.IsVegeterian = product.IsVegeterian;
-                productInList.IsVegan = product.IsVegan;
-                productInList.IsHalal = product.IsHalal;
-
+            _eatWellContext.SaveChanges();
         }
     }
 }
