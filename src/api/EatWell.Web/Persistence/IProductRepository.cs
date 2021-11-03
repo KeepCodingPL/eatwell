@@ -12,8 +12,6 @@ namespace EatWell.API.Persistence
         void DeleteProduct(int id);
         void CreateProduct(ProductModel product);
         IEnumerable<ProductModel> GetProducts();
-
-
         void UpdateProduct(ProductModel product);
 
     }
