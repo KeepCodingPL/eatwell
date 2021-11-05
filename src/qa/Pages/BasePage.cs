@@ -4,25 +4,15 @@ namespace EatWell.QA.Pages
 {
     public abstract class BasePage : DriverManager
     {
-        #region Paths
-
-        string addNewProductClickBtnPath = "//a[text()='Add New Product']";
-
-        #endregion
-
-        #region PageMethods
+        private readonly string _addNewProductClickBtnPath = "//a[text()='Add New Product']";
 
         public void ClickAddNewProduct()
         {
-            IWebElement addNewProductClick = driver.FindElement(By.XPath(addNewProductClickBtnPath));
+            var addNewProductClick = driver.FindElement(By.XPath(_addNewProductClickBtnPath));
             addNewProductClick.Click();
         }
 
-        #endregion
-
-        #region UtilityMethods
-
-        public bool URLComparison(string currentUrl, string expectedUrl)
+        public bool CompareURL(string currentUrl, string expectedUrl)  //lambda function
         {
             if (currentUrl.Equals(expectedUrl))
             {
@@ -34,6 +24,5 @@ namespace EatWell.QA.Pages
             }
         }
 
-        #endregion
     }
 }

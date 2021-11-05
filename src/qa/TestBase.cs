@@ -1,11 +1,5 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using System;
-using System.Configuration;
+using System.Threading;
 
 namespace EatWell.QA
 {
@@ -14,7 +8,7 @@ namespace EatWell.QA
         [SetUp]
         public void startBrowser()
         {
-            driver.Navigate().GoToUrl(url);
+            driver.Navigate().GoToUrl(Url);
 
             driver.Manage().Window.Maximize();
         }
@@ -22,6 +16,8 @@ namespace EatWell.QA
         [TearDown]
         public void QuitDriver()
         {
+            Thread.Sleep(2000);
+
             if (driver != null)
                 driver.Quit();
         }
