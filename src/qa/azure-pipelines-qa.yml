@@ -24,7 +24,9 @@ variables:
 steps:
 - task: MSBuild@1
   inputs:
-    solution: '**/*.sln'
+    solution: '**/EatWell.QA.sln'
+    configuration: 'Release'
+
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
