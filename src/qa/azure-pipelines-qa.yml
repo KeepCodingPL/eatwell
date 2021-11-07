@@ -29,16 +29,16 @@ steps:
     restoreSolution: '**/EatWell.QA.sln'
     feedsToUse: 'select'
 
+- task: FileTransform@1
+  inputs:
+    folderPath: $(System.DefaultWorkingDirectory)/src/qa
+    fileType: 'xml'
+    targetFiles: '**/App.config'
+
 - task: MSBuild@1
   inputs:
     solution: '**/EatWell.QA.sln'
     configuration: '$(buildConfiguration)'
-
-- task: FileTransform@1
-  inputs:
-    folderPath: $(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)
-    fileType: 'xml'
-    targetFiles: '**/App.config'
 
 - task: PublishPipelineArtifact@1
   inputs:
