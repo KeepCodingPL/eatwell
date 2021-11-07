@@ -40,6 +40,11 @@ steps:
     solution: '**/EatWell.QA.sln'
     configuration: 'Release'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: $(System.DefaultWorkingDirectory)/src/qa/bin/Release
+    artifactName: WebApp
+
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
@@ -49,7 +54,3 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)/src/qa/bin/Release'
  
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: $(System.DefaultWorkingDirectory)/src/qa/bin/Release
-    artifactName: WebApp
