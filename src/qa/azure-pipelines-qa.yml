@@ -17,9 +17,9 @@ pool:
 
 variables:
   - name: buildConfiguration
-    value: 'Release'
-  - name: stageName
-    value: "First stage"
+    value: Release
+  - name: url
+    value: https://ashy-sky-0c1ce5203.azurestaticapps.net/
 
 steps:
 
@@ -29,20 +29,20 @@ steps:
     restoreSolution: '**/EatWell.QA.sln'
     feedsToUse: 'select'
 
-- task: FileTransform@1
-  inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/src/qa/'
-    fileType: 'xml'
-    targetFiles: '**/packages.config'
-
 - task: MSBuild@1
   inputs:
     solution: '**/EatWell.QA.sln'
-    configuration: 'Release'
+    configuration: '$(buildConfiguration)'
+
+- task: FileTransform@1
+  inputs:
+    folderPath: $(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)
+    fileType: 'xml'
+    targetFiles: '**/packages.config'
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: $(System.DefaultWorkingDirectory)/src/qa/bin/Release
+    targetPath: $(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)
     artifactName: WebApp
 
 - task: VSTest@2
@@ -52,5 +52,5 @@ steps:
       **\EatWell.QA.exe
       !**\*TestAdapter.dll
       !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)/src/qa/bin/Release'
+    searchFolder: '$(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)'
  
