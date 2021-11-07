@@ -49,3 +49,8 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)/src/qa/bin/Release'
  
+- task: PublishBuildArtifacts@1
+  inputs:
+     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+     ArtifactName: 'drop'
+     publishLocation: 'Container'
