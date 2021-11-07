@@ -22,7 +22,6 @@ variables:
     value: https://ashy-sky-0c1ce5203.azurestaticapps.net/
 
 steps:
-
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
@@ -40,11 +39,6 @@ steps:
     solution: '**/EatWell.QA.sln'
     configuration: '$(buildConfiguration)'
 
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: $(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)
-    artifactName: WebApp
-
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
@@ -53,4 +47,3 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)'
- 
