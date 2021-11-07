@@ -41,5 +41,5 @@ steps:
       **\EatWell.QA.exe
       !**\*TestAdapter.dll
       !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)/bin/Debug'
+    searchFolder: '$(System.DefaultWorkingDirectory)/bin/Release'
  
