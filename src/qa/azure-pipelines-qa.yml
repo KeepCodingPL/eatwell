@@ -29,6 +29,12 @@ steps:
     restoreSolution: '**/EatWell.QA.sln'
     feedsToUse: 'select'
 
+- task: FileTransform@1
+  inputs:
+    folderPath: '$(System.DefaultWorkingDirectory)/src/qa/'
+    fileType: 'xml'
+    targetFiles: '**/packages.config'
+
 - task: MSBuild@1
   inputs:
     solution: '**/EatWell.QA.sln'
