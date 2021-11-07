@@ -2,6 +2,7 @@ trigger:
   branches:
     include:
     - development
+    - azure-pipeline*
   paths:
     include:
     - 'src/qa/*'
