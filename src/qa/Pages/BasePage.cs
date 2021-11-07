@@ -12,17 +12,8 @@ namespace EatWell.QA.Pages
             addNewProductClick.Click();
         }
 
-        public bool CompareURL(string currentUrl, string expectedUrl)  //lambda function
-        {
-            if (currentUrl.Equals(expectedUrl))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public bool CompareURL(string currentUrl, string expectedUrl) => currentUrl.Equals(expectedUrl) ? true : false; //lambda function
+       
 
     }
 }
