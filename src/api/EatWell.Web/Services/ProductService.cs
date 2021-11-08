@@ -6,6 +6,7 @@ namespace EatWell.API.Services
     using Persistence;
     using Models;
     using System.Collections.Generic;
+    using EatWell.API.DTO.Requests;
 
     public class ProductService : IProductService
     {
@@ -33,7 +34,7 @@ namespace EatWell.API.Services
             return _productRepository.GetProducts();
         }
 
-        public void UpdateProduct(ProductModel product)
+        public void UpdateProduct(UpdateRequestDto product)
         {
 
             _productRepository.UpdateProduct(product);
