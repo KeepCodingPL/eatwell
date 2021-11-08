@@ -10,7 +10,6 @@ using EatWell.API.Services;
 using Moq;
 using EatWell.API.Controllers;
 using EatWell.API.Models;
-using LetsDoIt.Moody.Application.CustomExceptions;
 
 namespace EatWell.API.Test.Controllers
 {
@@ -39,5 +38,17 @@ namespace EatWell.API.Test.Controllers
             Assert.IsType<OkResult>(actual);
 
         }
+
+        [Fact]
+        public void Given_When_ThenShould() 
+        {
+        //arrange
+
+        //act
+
+        //assert
+        
+        }
+
     }
 }
