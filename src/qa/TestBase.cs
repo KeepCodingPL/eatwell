@@ -1,58 +1,27 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using System;
-using System.Configuration;
+using System.Threading;
 
 namespace EatWell.QA
 {
-    public class TestBase
+    public class TestBase : DriverManager
     {
-        public static IWebDriver driver = new ChromeDriver();
-        string url = ConfigurationManager.AppSettings["url"];
-        
         [SetUp]
         public void startBrowser()
         {
-
-            if (driver != null)
-            {
-
-                String browser = "Chrome";
-                switch (browser)
-                {
-                    case "Chrome":
-                        driver = new ChromeDriver();
-                        break;
-                    case "Firefox":
-                        driver = new FirefoxDriver();
-                        break;
-                    case "IE":
-                        driver = new InternetExplorerDriver();
-                        break;
-                    case "Edge":
-                        driver = new EdgeDriver();
-                        break;
-                }
-            }
-
-
-            driver.Navigate().GoToUrl(url);
+            driver.Navigate().GoToUrl(Url);
 
             driver.Manage().Window.Maximize();
-
-           
-
         }
 
         [TearDown]
         public void QuitDriver()
         {
+            Thread.Sleep(2000);
+
             if (driver != null)
                 driver.Quit();
         }
     }
+
+   
 }
