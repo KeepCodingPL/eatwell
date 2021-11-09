@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import ProductEditModal from '../ui/ProductEditModal';
 import classes from './ProductItem.module.css';
+import React, { useState } from 'react';
+import ProductEditModal from '../ui/ProductEditModal';
 
 const ProductItem = (props) => {
     const [isActive, setIsActive] = useState(false);
