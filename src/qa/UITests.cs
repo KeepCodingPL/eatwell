@@ -1,9 +1,6 @@
 ﻿using EatWell.QA.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using System.Configuration;
-using System.Threading;
 using Assert = NUnit.Framework.Assert;
 
 namespace EatWell.QA
