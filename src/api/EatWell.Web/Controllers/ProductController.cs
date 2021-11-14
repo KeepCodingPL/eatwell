@@ -26,7 +26,7 @@ namespace EatWell.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProduct(ProductModel product)
+        public IActionResult CreateProduct(CreateRequest product)
         {
             _productService.CreateProduct(product);
             return Ok();

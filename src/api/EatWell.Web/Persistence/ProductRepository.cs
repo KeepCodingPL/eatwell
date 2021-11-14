@@ -15,11 +15,10 @@ namespace EatWell.API.Persistence
         {
             _eatWellContext = eatWellContext;
         }
-        public void CreateProduct(ProductModel product)
+        public void CreateProduct(CreateRequest product)
         {
             _eatWellContext.Products.Add(new ProductModel()
             {
-                IdProduct = product.IdProduct,
                 Name = product.Name,
                 Brand = product.Brand,
                 Ingredients = product.Ingredients,

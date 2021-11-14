@@ -17,7 +17,7 @@ namespace EatWell.API.Services
             _productRepository = productRepository;
         }
 
-        public void CreateProduct(ProductModel product)
+        public void CreateProduct(CreateRequest product)
         {
 
             _productRepository.CreateProduct(product);
