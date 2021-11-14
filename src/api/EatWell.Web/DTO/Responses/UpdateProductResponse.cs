@@ -6,13 +6,13 @@ using EatWell.API.Models;
 
 namespace EatWell.API.DTO.Responses
 {
-    public class UpdateResponse
+    public class UpdateProductResponse
     {
         public bool IsVegan { get; set; }
         public bool IsVegeterian { get; set; }
         public bool IsHalal { get; set; }
 
-        public UpdateResponse(ProductModel p)
+        public UpdateProductResponse(ProductModel p)
         {
             IsVegan = p.IsVegan;
             IsVegeterian = p.IsVegeterian;

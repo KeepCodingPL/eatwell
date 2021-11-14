@@ -12,10 +12,10 @@ namespace EatWell.API.Services
 
         void DeleteProduct(int id);
 
-        void CreateProduct(CreateRequest product);
+        void CreateProduct(CreateProductRequest product);
 
         IEnumerable<ProductModel> GetProducts();
         
-        void UpdateProduct(UpdateRequest product);
+        void UpdateProduct(UpdateProductRequest product);
     }
 }

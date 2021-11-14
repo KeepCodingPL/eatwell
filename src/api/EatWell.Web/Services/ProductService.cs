@@ -22,7 +22,7 @@ namespace EatWell.API.Services
             return _productRepository.GetProducts();
         }
 
-        public void CreateProduct(CreateRequest product)
+        public void CreateProduct(CreateProductRequest product)
         {
 
             _productRepository.CreateProduct(product);
@@ -36,7 +36,7 @@ namespace EatWell.API.Services
 
        
 
-        public void UpdateProduct(UpdateRequest product)
+        public void UpdateProduct(UpdateProductRequest product)
         {
 
             _productRepository.UpdateProduct(product);

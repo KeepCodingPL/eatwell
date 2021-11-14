@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EatWell.API.DTO.Responses
 {
-    public class CreateResponse
+    public class DeleteProductResponse
     {
     }
 }

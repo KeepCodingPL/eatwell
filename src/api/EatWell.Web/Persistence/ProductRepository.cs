@@ -15,7 +15,7 @@ namespace EatWell.API.Persistence
         {
             _eatWellContext = eatWellContext;
         }
-        public void CreateProduct(CreateRequest product)
+        public void CreateProduct(CreateProductRequest product)
         {
             _eatWellContext.Products.Add(new ProductModel()
             {
@@ -42,7 +42,7 @@ namespace EatWell.API.Persistence
         }
 
 
-        public void UpdateProduct(UpdateRequest updateRequest)
+        public void UpdateProduct(UpdateProductRequest updateRequest)
         {
             var productInList = _eatWellContext.Products.FirstOrDefault(p => p.IdProduct == updateRequest.IdProduct);
             
