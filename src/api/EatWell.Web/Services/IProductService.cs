@@ -16,6 +16,6 @@ namespace EatWell.API.Services
 
         IEnumerable<ProductModel> GetProducts();
         
-        void UpdateProduct(UpdateRequestDto product);
+        void UpdateProduct(UpdateRequest product);
     }
 }

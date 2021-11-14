@@ -43,7 +43,7 @@ namespace EatWell.API.Persistence
         }
 
 
-        public void UpdateProduct(UpdateRequestDto updateRequest)
+        public void UpdateProduct(UpdateRequest updateRequest)
         {
             var productInList = _eatWellContext.Products.FirstOrDefault(p => p.IdProduct == updateRequest.IdProduct);
             

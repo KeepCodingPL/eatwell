@@ -34,7 +34,7 @@ namespace EatWell.API.Services
             return _productRepository.GetProducts();
         }
 
-        public void UpdateProduct(UpdateRequestDto product)
+        public void UpdateProduct(UpdateRequest product)
         {
 
             _productRepository.UpdateProduct(product);
