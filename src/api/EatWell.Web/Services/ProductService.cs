@@ -17,6 +17,11 @@ namespace EatWell.API.Services
             _productRepository = productRepository;
         }
 
+        public IEnumerable<ProductModel> GetProducts()
+        {
+            return _productRepository.GetProducts();
+        }
+
         public void CreateProduct(CreateRequest product)
         {
 
@@ -29,10 +34,7 @@ namespace EatWell.API.Services
             _productRepository.DeleteProduct(id);
         }
 
-        public IEnumerable<ProductModel> GetProducts()
-        {
-            return _productRepository.GetProducts();
-        }
+       
 
         public void UpdateProduct(UpdateRequest product)
         {
