@@ -6,4 +6,6 @@
     <string name="meal_photo">Meal Photo</string>
     <string name="meal_name">Ürün Adı</string>
     <string name="vegan">Vegan</string>
+    <string name="facebook_app_id">1507725522927848</string>
+    <string name="fb_login_protocol_scheme">fb1507725522927848</string>
 </resources>

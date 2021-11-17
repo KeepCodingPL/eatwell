@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.facebook.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -20,13 +22,16 @@ import com.google.firebase.ktx.Firebase
 import com.keepcodingpl.eatwell.databinding.FragmentLoginBinding
 import com.keepcodingpl.eatwell.utils.RC_SIGN_IN
 import com.keepcodingpl.eatwell.utils.TAG
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult
+import com.google.firebase.auth.FacebookAuthProvider
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding: FragmentLoginBinding
-
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private var callbackManager = CallbackManager.Factory.create();
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +45,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Initialize Firebase Auth
+        FacebookSdk.sdkInitialize(requireContext());
         auth = Firebase.auth
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -49,9 +55,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         googleSignInClient = GoogleSignIn.getClient(activity, gso)
 
-        binding.signInButton.setOnClickListener {
+        binding.goggleSignInButton.setOnClickListener {
             signIn()
         }
+
+        binding.facebookLoginButton.setOnClickListener {
+            facebook()
+        }
+
     }
 
     override fun onStart() {
@@ -63,6 +74,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -113,4 +125,47 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
         findNavController().navigate(action)
     }
+
+    private fun facebook() {
+
+        binding.facebookLoginButton.setReadPermissions("email", "public_profile")
+        binding.facebookLoginButton.registerCallback(callbackManager, object :
+            FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                Log.d(TAG, "facebook:onSuccess:$loginResult")
+                handleFacebookAccessToken(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                Log.d(TAG, "facebook:onCancel")
+            }
+
+            override fun onError(error: FacebookException) {
+                Log.d(TAG, "facebook:onError", error)
+            }
+        })
+
+    }
+
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:$token")
+
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(context, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                    updateUI(null)
+                }
+            }
+    }
+
 }
