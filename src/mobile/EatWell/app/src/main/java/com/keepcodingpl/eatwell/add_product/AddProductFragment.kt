@@ -19,15 +19,17 @@ import org.json.JSONObject
 
 class AddProductFragment : Fragment(R.layout.add_product_fragment) {
 
+    private var _binding: AddProductFragmentBinding? = null
+    private val binding get() = _binding!!
+
     private var apiService = APIService()
-    private lateinit var binding: AddProductFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = AddProductFragmentBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = AddProductFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -68,5 +70,8 @@ class AddProductFragment : Fragment(R.layout.add_product_fragment) {
         }
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
