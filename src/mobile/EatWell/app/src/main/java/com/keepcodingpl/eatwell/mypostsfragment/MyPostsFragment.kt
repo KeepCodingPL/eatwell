@@ -14,16 +14,17 @@ import com.keepcodingpl.eatwell.utils.SwipeToDeleteCallback
 
 class MyPostsFragment : Fragment(R.layout.fragment_my_posts) {
 
-    private lateinit var postBinding: FragmentMyPostsBinding
+    private var _binding: FragmentMyPostsBinding? = null
+    private val binding get() = _binding!!
 
-    private var postAdapter = MyPostAdapter(arrayListOf())
+    private var postAdapter = MyPostAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        postBinding = FragmentMyPostsBinding.inflate(inflater, container, false)
-        return postBinding.root
+        _binding = FragmentMyPostsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,9 +33,9 @@ class MyPostsFragment : Fragment(R.layout.fragment_my_posts) {
     }
 
     private fun setupRv() {
-        postBinding.postRv.layoutManager = LinearLayoutManager(context)
+        binding.postRv.layoutManager = LinearLayoutManager(context)
 
-        postBinding.postRv.adapter = postAdapter
+        binding.postRv.adapter = postAdapter
 
 
         val swipeDelete = object : SwipeToDeleteCallback(requireContext()) {
@@ -43,15 +44,18 @@ class MyPostsFragment : Fragment(R.layout.fragment_my_posts) {
                 direction: Int
             ) {
                 val position = viewHolder.adapterPosition
-                postAdapter.deleteItem(position)
-                postAdapter.list.removeAt(position)
+                postAdapter.deleteElement(position)
 
                 //here the delete operation from the view model will be applied
             }
         }
 
         val touchHelper = ItemTouchHelper(swipeDelete)
-        touchHelper.attachToRecyclerView(postBinding.postRv)
+        touchHelper.attachToRecyclerView(binding.postRv)
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
 

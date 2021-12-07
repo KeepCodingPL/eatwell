@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.facebook.*
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -22,30 +24,29 @@ import com.google.firebase.ktx.Firebase
 import com.keepcodingpl.eatwell.databinding.FragmentLoginBinding
 import com.keepcodingpl.eatwell.utils.RC_SIGN_IN
 import com.keepcodingpl.eatwell.utils.TAG
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginResult
-import com.google.firebase.auth.FacebookAuthProvider
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    private lateinit var binding: FragmentLoginBinding
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-    private var callbackManager = CallbackManager.Factory.create();
+    private var callbackManager = CallbackManager.Factory.create()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Initialize Firebase Auth
-        FacebookSdk.sdkInitialize(requireContext());
+        FacebookSdk.sdkInitialize(requireContext())
         auth = Firebase.auth
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -53,7 +54,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             .requestEmail()
             .build()
 
-        googleSignInClient = GoogleSignIn.getClient(activity, gso)
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         binding.goggleSignInButton.setOnClickListener {
             signIn()
@@ -131,9 +132,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.facebookLoginButton.setReadPermissions("email", "public_profile")
         binding.facebookLoginButton.registerCallback(callbackManager, object :
             FacebookCallback<LoginResult> {
-            override fun onSuccess(loginResult: LoginResult) {
-                Log.d(TAG, "facebook:onSuccess:$loginResult")
-                handleFacebookAccessToken(loginResult.accessToken)
+            override fun onSuccess(result: LoginResult) {
+                Log.d(TAG, "facebook:onSuccess:$result")
+                handleFacebookAccessToken(result.accessToken)
             }
 
             override fun onCancel() {
@@ -167,5 +168,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
             }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

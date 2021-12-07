@@ -2,9 +2,11 @@ package com.keepcodingpl.eatwell.feed_fragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.keepcodingpl.eatwell.model.Meal
+import com.keepcodingpl.eatwell.model.MealResponse
 import com.keepcodingpl.eatwell.service.APIService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -17,7 +19,9 @@ class FeedViewModel(application: Application) : AndroidViewModel(application) {
 
     private val apiClient = APIService()
     private val disposable = CompositeDisposable()
-    val meals = MutableLiveData<List<Meal>>()
+    private val _response = MutableLiveData<MealResponse>()
+    val mealsResponse: LiveData<MealResponse>
+        get() = _response
 
 
 //    fun getDataFromAPI() {

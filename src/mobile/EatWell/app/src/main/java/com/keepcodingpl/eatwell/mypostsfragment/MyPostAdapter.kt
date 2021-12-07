@@ -1,22 +1,26 @@
 package com.keepcodingpl.eatwell.mypostsfragment
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.keepcodingpl.eatwell.databinding.PostItemRowBinding
 import com.keepcodingpl.eatwell.model.Post
 
-class MyPostAdapter(private val postList: ArrayList<Post>) :
+class MyPostAdapter :
     RecyclerView.Adapter<MyPostAdapter.MyPostViewHolder>() {
     // list = dummy data. You can delete
-    val list =
-        mutableListOf(
-            postList.add(Post("Köfte", "Helal")),
-            postList.add(Post("Salata", "Helal"))
-        )
 
-    class MyPostViewHolder(val binding: PostItemRowBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MyPostViewHolder(val binding: PostItemRowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(post: Post) {
+            binding.apply {
+                postMealName.text = post.postName
+                postMealCategory.text = post.postCategory
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPostViewHolder {
         val binding = PostItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,14 +28,30 @@ class MyPostAdapter(private val postList: ArrayList<Post>) :
     }
 
     override fun onBindViewHolder(holder: MyPostViewHolder, position: Int) {
-        holder.binding.post = postList[position]
+        val postList = posts[position]
+        holder.bind(postList)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun deleteItem(index: Int) {
-        postList.removeAt(index)
+    private val diffUtil = object : DiffUtil.ItemCallback<Post>() {
+        override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
+
+    var posts: List<Post>
+        get() = recyclerListDiffer.currentList
+        set(value) = recyclerListDiffer.submitList(value)
+
+    fun deleteElement(position: Int) {
+        recyclerListDiffer.currentList.removeAt(position)
         notifyDataSetChanged()
     }
 
-    override fun getItemCount() = postList.size
+    override fun getItemCount() = posts.size
 }
