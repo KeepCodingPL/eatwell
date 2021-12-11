@@ -16,6 +16,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +42,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewpager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewpager) { tab, position ->
-            when(position) {
+            when (position) {
                 0 -> {
                     tab.text = "Feed"
                 }
@@ -52,3 +57,5 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         _binding = null
     }
 }
+
+

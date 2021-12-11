@@ -63,6 +63,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.facebookLoginButton.setOnClickListener {
             facebook()
         }
+        binding.btnPass.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment())
+        }
 
     }
 
