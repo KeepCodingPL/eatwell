@@ -7,27 +7,79 @@
         android:layout_height="match_parent"
         tools:context=".feed_fragment.FeedFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mealsList"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+            <include layout="@layout/item_meal_shimmer">
+
+            </include>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:fabSize="normal"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_anchor="@id/mealsList"
         android:contentDescription="@string/add_button"
-        android:minHeight="48dp"
         android:src="@drawable/plus_icon"
+        app:backgroundTint="@color/yellow_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mealsList"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
