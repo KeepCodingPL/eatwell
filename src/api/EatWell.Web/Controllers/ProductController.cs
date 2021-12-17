@@ -26,14 +26,14 @@ namespace EatWell.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProduct(ProductModel product)
+        public IActionResult CreateProduct(CreateProductRequest product)
         {
             _productService.CreateProduct(product);
             return Ok();
         }
 
         [HttpPut("{idProduct}")]
-        public IActionResult UpdatePorduct(UpdateRequestDto updateRequest)
+        public IActionResult UpdatePorduct(UpdateProductRequest updateRequest)
         {
             _productService.UpdateProduct(updateRequest);
                         
