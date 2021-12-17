@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace EatWell.API.Services
 {
+    using EatWell.API.DTO.Requests;
     using Models;
     using System.Collections.Generic;
 
@@ -11,10 +12,10 @@ namespace EatWell.API.Services
 
         void DeleteProduct(int id);
 
-        void CreateProduct(ProductModel product);
+        void CreateProduct(CreateProductRequest product);
 
         IEnumerable<ProductModel> GetProducts();
         
-        void UpdateProduct(ProductModel product);
+        void UpdateProduct(UpdateProductRequest product);
     }
 }

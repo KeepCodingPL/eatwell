@@ -3,6 +3,7 @@
 
 namespace EatWell.API.Controllers
 {
+    using EatWell.API.DTO.Requests;
     using Models;
     using Services;
 
@@ -25,16 +26,17 @@ namespace EatWell.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateProduct(ProductModel product)
+        public IActionResult CreateProduct(CreateProductRequest product)
         {
             _productService.CreateProduct(product);
             return Ok();
         }
 
         [HttpPut("{idProduct}")]
-        public IActionResult UpdatePorduct(ProductModel product)
+        public IActionResult UpdatePorduct(UpdateProductRequest updateRequest)
         {
-            _productService.UpdateProduct(product);
+            _productService.UpdateProduct(updateRequest);
+                        
             return Ok();
         }
 

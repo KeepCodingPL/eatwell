@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using EatWell.API.DTO.Requests;
 
 namespace EatWell.API.Persistence
 {
@@ -14,11 +15,10 @@ namespace EatWell.API.Persistence
         {
             _eatWellContext = eatWellContext;
         }
-        public void CreateProduct(ProductModel product)
+        public void CreateProduct(CreateProductRequest product)
         {
             _eatWellContext.Products.Add(new ProductModel()
             {
-                IdProduct = product.IdProduct,
                 Name = product.Name,
                 Brand = product.Brand,
                 Ingredients = product.Ingredients,
@@ -42,20 +42,18 @@ namespace EatWell.API.Persistence
         }
 
 
-        public void UpdateProduct(ProductModel product)
+        public void UpdateProduct(UpdateProductRequest updateRequest)
         {
-            var productInList = _eatWellContext.Products.FirstOrDefault(p => p.IdProduct == product.IdProduct);
+            var productInList = _eatWellContext.Products.FirstOrDefault(p => p.IdProduct == updateRequest.IdProduct);
             
             if (productInList is null)
             {
                 throw new Exception("Product not defined");
             }
-            productInList.Name = product.Name;
-            productInList.Brand = product.Brand;
-            productInList.Ingredients = product.Ingredients;
-            productInList.IsVegeterian = product.IsVegeterian;
-            productInList.IsVegan = product.IsVegan;
-            productInList.IsHalal = product.IsHalal;
+            
+            productInList.IsVegeterian = updateRequest.IsVegeterian;
+            productInList.IsVegan = updateRequest.IsVegan;
+            productInList.IsHalal = updateRequest.IsHalal;
 
             _eatWellContext.SaveChanges();
         }
