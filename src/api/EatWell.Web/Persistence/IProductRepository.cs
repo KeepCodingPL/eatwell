@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace EatWell.API.Persistence
 {
+    using EatWell.API.DTO.Requests;
     using Models;
     using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace EatWell.API.Persistence
         void DeleteProduct(int id);
         void CreateProduct(ProductModel product);
         IEnumerable<ProductModel> GetProducts();
-        void UpdateProduct(ProductModel product);
+        void UpdateProduct(UpdateRequestDto product);
 
     }
 }
