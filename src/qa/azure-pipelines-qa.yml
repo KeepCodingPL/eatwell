@@ -1,25 +1,49 @@
 trigger:
+  branches:
+    include:
+    - development
+    - azure-pipeline*
   paths:
-    include: # Include!
+    include:
     - 'src/qa/*'
+
+pr:
+   branches:
+    exclude:
+    - '*'  
   
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2019'
 
 variables:
   - name: buildConfiguration
-    value: 'Release'
-  - name: stageName
-    value: "First stage"
+    value: Release
+  - name: url
+    value: https://ashy-sky-0c1ce5203.azurestaticapps.net/
 
-jobs:
+steps:
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/EatWell.QA.sln'
+    feedsToUse: 'select'
 
-- job: QA
-  displayName: QA_Build 
-  workspace:
-    clean: all
-  # variables:
-  #   - group: Eat_Well_Variable_Group
-  # steps:
-  #   - template: src/devops/yaml/backend.yml
- 
+- task: FileTransform@1
+  inputs:
+    folderPath: $(System.DefaultWorkingDirectory)/src/qa
+    fileType: 'xml'
+    targetFiles: '**/App.config'
+
+- task: MSBuild@1
+  inputs:
+    solution: '**/EatWell.QA.sln'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\EatWell.QA.exe
+      !**\*TestAdapter.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)/src/qa/bin/$(buildConfiguration)'

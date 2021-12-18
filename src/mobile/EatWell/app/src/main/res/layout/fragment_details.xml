@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".details_fragment.DetailsFragment">
+
+        <TextView
+            android:id="@+id/productNameDetailsText"
+            android:layout_width="279dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="24dp"
+            android:text="ProductName"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageDetailsImageView" />
+
+        <ImageView
+            android:id="@+id/imageDetailsImageView"
+            android:layout_width="254dp"
+            android:layout_height="237dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/productBrandDetailsText"
+            android:layout_width="279dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="20dp"
+            android:text="Brand"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productNameDetailsText" />
+
+        <CheckBox
+            android:id="@+id/veganDetailsCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:text="Vegan"
+            android:clickable="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productBrandDetailsText" />
+
+        <CheckBox
+            android:id="@+id/vegetarianDetailsCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Vegetarian"
+            android:clickable="false"
+            app:layout_constraintEnd_toStartOf="@+id/halalDetailsCheckBox"
+            app:layout_constraintStart_toEndOf="@+id/veganDetailsCheckBox"
+            app:layout_constraintTop_toBottomOf="@+id/productBrandDetailsText" />
+
+        <CheckBox
+            android:id="@+id/halalDetailsCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="48dp"
+            android:text="Halal"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productBrandDetailsText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

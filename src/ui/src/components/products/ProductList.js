@@ -3,17 +3,23 @@ import classes from './ProductList.module.css';
 
 const ProductList = (props) => {
     return (
-        <ul className={classes.list}>
-            {props.products.map((product) => (
-                <ProductItem
-                    key={product.id}
-                    id={product.id}
-                    image={product.image}
-                    title={product.title}
-                    description={product.description}
-                />
-            ))}
-        </ul>
+        <>
+            <div className={classes.heading}>
+                <div>Name</div>
+                <div>Explanation</div>
+            </div>
+
+            <div className={classes.list}>
+                {props.products.map((product) => (
+                    <ProductItem
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        description={product.description}
+                    />
+                ))}
+            </div>
+        </>
     );
 };
 

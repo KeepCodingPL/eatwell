@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1077196018347",
+    "project_id": "eatwell-4dadc",
+    "storage_bucket": "eatwell-4dadc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077196018347:android:e79cdb412405a705f11dee",
+        "android_client_info": {
+          "package_name": "com.keepcodingpl.eatwell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077196018347-idfqprlo5gs4q6cuk3s0b82j22di4rm4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.keepcodingpl.eatwell",
+            "certificate_hash": "e249a117640d9589cbf9dca52e4d8367dd2c1e32"
+          }
+        },
+        {
+          "client_id": "1077196018347-a9kj2mmh874mm1ipq9rd3dm0ctcl696u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO6zPbS_T6tcbEjO_Mr4JoCZK5OyZZpm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077196018347-a9kj2mmh874mm1ipq9rd3dm0ctcl696u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.keepcodingpl.eatwell.main_fragment.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addProductFragment"
+            app:destination="@id/addProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.keepcodingpl.eatwell.details_fragment.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="mealName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProductFragment"
+        android:name="com.keepcodingpl.eatwell.add_product.AddProductFragment"
+        android:label="AddProductFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.keepcodingpl.eatwell.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

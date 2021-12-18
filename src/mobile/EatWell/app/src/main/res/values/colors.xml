@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="yellow_logo">#FFD000</color>
+    <color name="colorRecyclerViewDelete">#FF0303</color>
+    <color name="grey">#AF9797</color>
 </resources>
