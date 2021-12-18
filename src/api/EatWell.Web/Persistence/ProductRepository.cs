@@ -7,6 +7,7 @@ namespace EatWell.API.Persistence
 {
     using DTO.Requests;
     using DTO.Responses;
+    using Utils;
     using Models;
 
     public class ProductRepository : IProductRepository
@@ -28,7 +29,7 @@ namespace EatWell.API.Persistence
             {
                 Name = product.Name,
                 Brand = product.Brand,
-                Ingredients = product.Ingredients,
+                Ingredients = IngredientsHelper.IngredientsToString(product.Ingredients),
                 IsHalal = product.IsHalal,
                 IsVegan = product.IsVegan,
                 IsVegeterian = product.IsVegeterian
@@ -50,9 +51,9 @@ namespace EatWell.API.Persistence
             _eatWellContext.SaveChanges();
         }
         
-        public UpdateProductResponse UpdateProduct(UpdateProductRequest updateRequest)
+        public UpdateProductResponse UpdateProduct(int id,UpdateProductRequest updateRequest)
         {
-            var productInList = _eatWellContext.Products.FirstOrDefault(p => p.Id == updateRequest.Id);
+            var productInList = _eatWellContext.Products.FirstOrDefault(p => p.Id == id);
             
             if (productInList is null)
             {

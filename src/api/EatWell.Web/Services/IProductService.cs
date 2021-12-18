@@ -2,7 +2,6 @@
 {
     using DTO.Requests;
     using DTO.Responses;
-    using Models;
     using System.Collections.Generic;
 
     public interface IProductService
@@ -15,6 +14,6 @@
 
         CreateProductResponse CreateProduct(CreateProductRequest product);
 
-        UpdateProductResponse UpdateProduct(UpdateProductRequest product);
+        UpdateProductResponse UpdateProduct(int id, UpdateProductRequest product);
     }
 }

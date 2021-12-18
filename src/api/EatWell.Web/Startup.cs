@@ -44,12 +44,13 @@ namespace EatWell.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                //Dangerous action! Use only on development enviroments!
+                db.Database.EnsureCreated();
             }
 
             app.UseSwagger()
                .UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EatWell.Web v1"));
-
-            db.Database.EnsureCreated();
 
             app.UseHttpsRedirection();
 

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EatWell.API.DTO.Requests
 {
+    using Utils;
     using Models;
 
     public class CreateProductRequest
@@ -12,7 +13,7 @@ namespace EatWell.API.DTO.Requests
 
         public string Brand { get; set; }
 
-        public List<string> Ingredients { get; set; } = new List<string>();
+        public List<string> Ingredients { get; set; }
 
         public bool IsVegan { get; set; }
 
@@ -20,11 +21,16 @@ namespace EatWell.API.DTO.Requests
 
         public bool IsHalal { get; set; }
 
+        public CreateProductRequest()
+        {
+
+        }
+
         public CreateProductRequest(ProductModel p)
         {
             Name = p.Name;
             Brand = p.Brand;
-            Ingredients = p.Ingredients;
+            Ingredients = IngredientsHelper.IngredientsToList(p.Ingredients);
             IsVegan = p.IsVegan;
             IsVegeterian = p.IsVegeterian;
             IsHalal = p.IsHalal;

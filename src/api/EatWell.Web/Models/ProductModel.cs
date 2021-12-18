@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EatWell.API.Models
 {
@@ -12,7 +11,7 @@ namespace EatWell.API.Models
 
         public string Brand { get; set; }
 
-        public List<string> Ingredients { get; set; } = new List<string>();
+        public string Ingredients { get; set; }
 
         public bool IsVegan { get; set; }
 

@@ -14,6 +14,6 @@
 
         CreateProductResponse CreateProduct(CreateProductRequest product);
 
-        UpdateProductResponse UpdateProduct(UpdateProductRequest product);
+        UpdateProductResponse UpdateProduct(int id, UpdateProductRequest product);
     }
 }

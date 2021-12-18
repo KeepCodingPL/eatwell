@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EatWell.API.Controllers
 {
-    using EatWell.API.DTO.Requests;
+    using DTO.Requests;
     using Services;
 
     [Route("api/product")]
@@ -17,21 +18,13 @@ namespace EatWell.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetProducts()
-        {
-            var products = _productService.GetProducts();
-            return Ok(products);
-        }
+        public IActionResult GetProducts() => Ok(_productService.GetProducts());
 
         [HttpGet("{id:int}")]
-        public IActionResult GetProduct(int id)
-        {
-            var product = _productService.GetProduct(id);
-
-            return Ok(product);
-        }
+        public IActionResult GetProduct(int id) => Ok(_productService.GetProduct(id));
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult CreateProduct(CreateProductRequest product)
         {
             var createdProduct = _productService.CreateProduct(product);
@@ -40,17 +33,15 @@ namespace EatWell.API.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult UpdatePorduct(UpdateProductRequest updateRequest)
-        {
-            return Ok(_productService.UpdateProduct(updateRequest));
-        }
+        public IActionResult UpdatePorduct(int id, UpdateProductRequest updateRequest) => Ok(_productService.UpdateProduct(id, updateRequest));
 
         [HttpDelete("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult DeleteProduct(int id)
         {
             _productService.DeleteProduct(id);
 
-            return Ok();
+            return NoContent();
         }
     }
 }

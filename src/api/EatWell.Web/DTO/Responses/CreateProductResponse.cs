@@ -2,6 +2,7 @@
 
 namespace EatWell.API.DTO.Responses
 {
+    using Utils;
     using Models;
 
     public class CreateProductResponse
@@ -12,7 +13,7 @@ namespace EatWell.API.DTO.Responses
 
         public string Brand { get; set; }
 
-        public List<string> Ingredients { get; set; } = new List<string>();
+        public List<string> Ingredients { get; set; }
 
         public bool IsVegan { get; set; }
 
@@ -22,9 +23,10 @@ namespace EatWell.API.DTO.Responses
 
         public CreateProductResponse(ProductModel p)
         {
+            Id = p.Id;
             Name = p.Name;
             Brand = p.Brand;
-            Ingredients = p.Ingredients;
+            Ingredients = IngredientsHelper.IngredientsToList(p.Ingredients);
             IsVegan = p.IsVegan;
             IsVegeterian = p.IsVegeterian;
             IsHalal = p.IsHalal;
