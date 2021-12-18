@@ -28,8 +28,9 @@ namespace EatWell.API
 
             services.AddTransient<IProductRepository, ProductRepository>()
                     .AddTransient<IProductService, ProductService>();
-            
-            services.AddControllers();
+
+            services.AddControllers()
+                .ConfigureApiBehaviorOptions(x => x.SuppressMapClientErrors = true);
 
             services.AddSwaggerGen(c =>
             {
@@ -39,7 +40,7 @@ namespace EatWell.API
             services.AddMediatR(typeof(Startup));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,EatWellContext db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, EatWellContext db)
         {
             if (env.IsDevelopment())
             {

@@ -23,6 +23,7 @@ namespace EatWell.API.DTO.Responses
 
         public UpdateProductResponse(ProductModel p)
         {
+            Id = p.Id;
             Name = p.Name;
             Brand = p.Brand;
             Ingredients = IngredientsHelper.IngredientsToList(p.Ingredients);

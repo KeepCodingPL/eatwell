@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EatWell.API.Persistence
 {
@@ -19,11 +20,16 @@ namespace EatWell.API.Persistence
             _eatWellContext = eatWellContext;
         }
 
-        public IEnumerable<GetProductResponse> GetProducts() => _eatWellContext.Products.Select(p => new GetProductResponse(p));
+        public async Task<IEnumerable<GetProductResponse>> GetProductsAsync() => await _eatWellContext.Products.Select(p => new GetProductResponse(p)).ToListAsync();
 
-        public GetProductResponse GetProduct(int id) => new(_eatWellContext.Products.FirstOrDefault(p => p.Id == id));
+        public async Task<GetProductResponse> GetProductByIdAsync(int id)
+        {
+            var product = await _eatWellContext.Products.FirstOrDefaultAsync(p => p.Id == id);
 
-        public CreateProductResponse CreateProduct(CreateProductRequest product)
+            return product is null ? null : new(product);
+        }
+
+        public async Task<CreateProductResponse> CreateProductAsync(CreateProductRequest product)
         {
             var prodcutToAdd = new ProductModel()
             {
@@ -37,36 +43,36 @@ namespace EatWell.API.Persistence
 
             _eatWellContext.Entry(prodcutToAdd).State = EntityState.Added;
 
-            _eatWellContext.SaveChanges();
+            await _eatWellContext.SaveChangesAsync();
 
             return new CreateProductResponse(prodcutToAdd);
         }
 
-        public void DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
-            var product = _eatWellContext.Products.FirstOrDefault(p => p.Id == id);
+            var product = await _eatWellContext.Products.FirstOrDefaultAsync(p => p.Id == id);
 
             _eatWellContext.Entry(product).State = EntityState.Deleted;
 
-            _eatWellContext.SaveChanges();
+            await _eatWellContext.SaveChangesAsync();
         }
-        
-        public UpdateProductResponse UpdateProduct(int id,UpdateProductRequest updateRequest)
+
+        public async Task<UpdateProductResponse> UpdateProductAsync(int id, UpdateProductRequest updateRequest)
         {
-            var productInList = _eatWellContext.Products.FirstOrDefault(p => p.Id == id);
-            
+            var productInList = await _eatWellContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+
             if (productInList is null)
             {
                 throw new Exception("Product not defined");
             }
-            
+
             productInList.IsVegeterian = updateRequest.IsVegeterian;
             productInList.IsVegan = updateRequest.IsVegan;
             productInList.IsHalal = updateRequest.IsHalal;
 
             _eatWellContext.Entry(productInList).State = EntityState.Modified;
 
-            _eatWellContext.SaveChanges();
+            await _eatWellContext.SaveChangesAsync();
 
             return new UpdateProductResponse(productInList);
         }
