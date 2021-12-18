@@ -1,25 +1,26 @@
+using System.Threading.Tasks;
 using System.Collections.Generic;
-using EatWell.API.Models;
 
 namespace EatWell.API.Services
 {
     using Persistence;
-    using Models;
-    using System.Collections.Generic;
-    using EatWell.API.DTO.Requests;
+    using DTO.Requests;
+    using DTO.Responses;
 
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
         
         public ProductService(IProductRepository productRepository) => _productRepository = productRepository;
-        
-        public void CreateProduct(CreateProductRequest product) => _productRepository.CreateProduct(product);
 
-        public void DeleteProduct(int id) => _productRepository.DeleteProduct(id);
+        public async Task<IEnumerable<GetProductResponse>> GetProductsAsync() => await _productRepository.GetProductsAsync();
+
+        public async Task<GetProductResponse> GetProductByIdAsync(int id) => await _productRepository.GetProductByIdAsync(id);
+
+        public async Task<CreateProductResponse> CreateProductAsync(CreateProductRequest product) => await _productRepository.CreateProductAsync(product);
+
+        public async Task DeleteProductAsync(int id) => await _productRepository.DeleteProductAsync(id);
         
-        public IEnumerable<ProductModel> GetProducts() => _productRepository.GetProducts();
-        
-        public void UpdateProduct(UpdateProductRequest product) => _productRepository.UpdateProduct(product);
+        public async Task<UpdateProductResponse> UpdateProductAsync(int id, UpdateProductRequest product) => await _productRepository.UpdateProductAsync(id, product);
     }
 }

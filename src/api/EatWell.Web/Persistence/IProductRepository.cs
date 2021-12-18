@@ -1,19 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EatWell.API.Persistence
 {
-    using EatWell.API.DTO.Requests;
-    using Models;
-    using System.Collections.Generic;
+    using DTO.Requests;
+    using DTO.Responses;
 
     public interface IProductRepository
     {
+        Task<IEnumerable<GetProductResponse>> GetProductsAsync();
 
-        void DeleteProduct(int id);
-        void CreateProduct(CreateProductRequest product);
-        IEnumerable<ProductModel> GetProducts();
-        void UpdateProduct(UpdateProductRequest product);
+        Task<GetProductResponse> GetProductByIdAsync(int id);
 
+        Task DeleteProductAsync(int id);
+
+        Task<CreateProductResponse> CreateProductAsync(CreateProductRequest product);
+
+        Task<UpdateProductResponse> UpdateProductAsync(int id, UpdateProductRequest product);
     }
 }

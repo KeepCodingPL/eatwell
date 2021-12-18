@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EatWell.API.Models
 {
     public class ProductModel
     {
         [Key]
-        public int IdProduct { get; set; }
+        public int Id { get; set; }
+
         public string Name { get; set; }
+
         public string Brand { get; set; }
 
-        public List<string> Ingredients = new List<string>();
+        public string Ingredients { get; set; }
 
         public bool IsVegan { get; set; }
+
         public bool IsVegeterian { get; set; }
+
         public bool IsHalal { get; set; }
-
     }
-
 }
-

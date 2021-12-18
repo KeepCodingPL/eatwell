@@ -1,21 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EatWell.API.Services
 {
-    using EatWell.API.DTO.Requests;
-    using Models;
-    using System.Collections.Generic;
+    using DTO.Requests;
+    using DTO.Responses;
 
     public interface IProductService
     {
+        Task<IEnumerable<GetProductResponse>> GetProductsAsync();
 
-        void DeleteProduct(int id);
+        Task<GetProductResponse> GetProductByIdAsync(int id);
 
-        void CreateProduct(CreateProductRequest product);
+        Task DeleteProductAsync(int id);
 
-        IEnumerable<ProductModel> GetProducts();
-        
-        void UpdateProduct(UpdateProductRequest product);
+        Task<CreateProductResponse> CreateProductAsync(CreateProductRequest product);
+
+        Task<UpdateProductResponse> UpdateProductAsync(int id, UpdateProductRequest product);
     }
 }

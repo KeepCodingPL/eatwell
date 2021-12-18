@@ -1,10 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EatWell.API.Controllers
 {
-    using EatWell.API.DTO.Requests;
-    using Models;
+    using DTO.Requests;
+    using DTO.Responses;
+    using Commands;
+    using Queries;
     using Services;
 
     [Route("api/product")]
@@ -13,39 +19,64 @@ namespace EatWell.API.Controllers
     {
         private readonly IProductService _productService;
 
-        public ProductController(IProductService productService)
+        private readonly IMediator _mediator;
+
+        public ProductController(IMediator mediator, IProductService productService)
         {
+            _mediator = mediator;
             _productService = productService;
         }
 
         [HttpGet]
-        public IActionResult GetProducts()
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(IEnumerable<GetProductResponse>))]
+        public async Task<IActionResult> GetProducts()
         {
-            var products = _productService.GetProducts();
-            return Ok(products);
+            var query = new GetProductsQuery();
+
+            return Ok(await _mediator.Send(query));
+        }
+
+        [HttpGet("{id:int}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(GetProductResponse))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetProductById(int id)
+        {
+            var query = new GetProductByIdQuery(id);
+
+            var result = await _mediator.Send(query);
+
+            return result != null ? Ok(result) : NotFound();
         }
 
         [HttpPost]
-        public IActionResult CreateProduct(CreateProductRequest product)
+        [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(CreateProductResponse))]
+        public async Task<IActionResult> CreateProduct(CreateProductRequest createProductRequest)
         {
-            _productService.CreateProduct(product);
-            return Ok();
+            var command = new CreateProductCommand(createProductRequest);
+
+            var createdProduct = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetProductById), new { id = createdProduct.Id }, createdProduct);
         }
 
-        [HttpPut("{idProduct}")]
-        public IActionResult UpdatePorduct(UpdateProductRequest updateRequest)
+        [HttpPut("{id:int}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UpdateProductResponse))]
+        public async Task<IActionResult> UpdatePorduct(int id, UpdateProductRequest updateRequest)
         {
-            _productService.UpdateProduct(updateRequest);
-                        
-            return Ok();
+            var command = new UpdateProductCommand(id, updateRequest);
+
+            return Ok(await _mediator.Send(command));
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteProduct(int id)
+        [SwaggerResponse(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteProduct(int id)
         {
-            _productService.DeleteProduct(id);
+            var command = new DeleteProductCommand(id);
 
-            return Ok();
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

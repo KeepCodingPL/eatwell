@@ -31,7 +31,7 @@ namespace EatWell.API.Test.Controllers
 
             _mockCategoryService
                 .Setup(service =>
-                    service.DeleteProduct(
+                    service.DeleteProductAsync(
                                 It.IsAny<int>()));
 
             var actual =  _testing.DeleteProduct(id);
