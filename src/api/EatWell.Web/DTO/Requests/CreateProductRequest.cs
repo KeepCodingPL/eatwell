@@ -1,22 +1,23 @@
-﻿using EatWell.API.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EatWell.API.DTO.Requests
 {
+    using Models;
+
     public class CreateProductRequest
     {
         [Required]
         public string Name { get; set; }
+
         public string Brand { get; set; }
 
-        public List<string> Ingredients = new List<string>();
+        public List<string> Ingredients { get; set; } = new List<string>();
 
         public bool IsVegan { get; set; }
+
         public bool IsVegeterian { get; set; }
+
         public bool IsHalal { get; set; }
 
         public CreateProductRequest(ProductModel p)
@@ -27,9 +28,6 @@ namespace EatWell.API.DTO.Requests
             IsVegan = p.IsVegan;
             IsVegeterian = p.IsVegeterian;
             IsHalal = p.IsHalal;
-
         }
-
-
     }
 }

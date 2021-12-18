@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-
 namespace EatWell.API.Controllers
 {
     using EatWell.API.DTO.Requests;
-    using Models;
     using Services;
 
     [Route("api/product")]
@@ -25,19 +23,26 @@ namespace EatWell.API.Controllers
             return Ok(products);
         }
 
+        [HttpGet("{id:int}")]
+        public IActionResult GetProduct(int id)
+        {
+            var product = _productService.GetProduct(id);
+
+            return Ok(product);
+        }
+
         [HttpPost]
         public IActionResult CreateProduct(CreateProductRequest product)
         {
-            _productService.CreateProduct(product);
-            return Ok();
+            var createdProduct = _productService.CreateProduct(product);
+
+            return CreatedAtAction(nameof(GetProduct), new { id = createdProduct.Id }, createdProduct);
         }
 
-        [HttpPut("{idProduct}")]
+        [HttpPut("{id:int}")]
         public IActionResult UpdatePorduct(UpdateProductRequest updateRequest)
         {
-            _productService.UpdateProduct(updateRequest);
-                        
-            return Ok();
+            return Ok(_productService.UpdateProduct(updateRequest));
         }
 
         [HttpDelete("{id:int}")]
