@@ -6,9 +6,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace EatWell.API
 {
+    using EatWell.API.Utils.Security.Encryption;
+    using EatWell.API.Utils.Security.JWT;
+    using Microsoft.IdentityModel.Tokens;
     using Persistence;
     using Services;
 
@@ -25,9 +29,24 @@ namespace EatWell.API
         {
             services.AddDbContext<EatWellContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("EatWellDatabase")));
-
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+                    };
+                });
             services.AddTransient<IProductRepository, ProductRepository>()
-                    .AddTransient<IProductService, ProductService>();
+                    .AddTransient<IProductService, ProductService>()
+                    .AddTransient<ITokenHelper, JwtHelper>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(x => x.SuppressMapClientErrors = true);
@@ -56,6 +75,8 @@ namespace EatWell.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
