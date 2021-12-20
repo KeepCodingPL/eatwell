@@ -11,5 +11,6 @@ namespace EatWell.API.Persistence
         }
 
         public virtual DbSet<ProductModel> Products { get; set; }
+        public virtual DbSet<UserModel> Users { get; set; }
     }
 }
