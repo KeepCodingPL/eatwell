@@ -45,7 +45,9 @@ namespace EatWell.API
                     };
                 });
             services.AddTransient<IProductRepository, ProductRepository>()
+                    .AddTransient<IUserRepository, UserRepository>()
                     .AddTransient<IProductService, ProductService>()
+                    .AddTransient<IUserService,UserService>()
                     .AddTransient<ITokenHelper, JwtHelper>();
 
             services.AddControllers()
