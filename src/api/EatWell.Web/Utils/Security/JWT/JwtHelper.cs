@@ -12,9 +12,7 @@ namespace EatWell.API.Utils.Security.JWT
 {
     public class JwtHelper : ITokenHelper
     {
-        private static UserModel user1 = new UserModel { UserId = 1, Email = "email1.com", Password = "pass1" };
-        private static UserModel user2 = new UserModel { UserId = 2, Email = "email2.com", Password = "pass2" };
-        private readonly IDictionary<string,string> users = new Dictionary<string, string> { { user1.Email, user1.Password }, { user2.Email, user2.Password } };
+        
         public IConfiguration Configuration { get; }
         private TokenOptions _tokenOptions;
         private DateTime _accessTokenExpiration;
@@ -25,18 +23,9 @@ namespace EatWell.API.Utils.Security.JWT
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
         }
 
-        public bool SignIn(UserModel user)
-        {
-            if (!users.Any(u => u.Key == user.Email && u.Value == user.Password))
-            {
-                return false;
-            }
-            return true;
-        }
         public AccessToken CreateToken(UserModel user)
         {
-            if (!SignIn(user))
-                return null;
+            
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
             var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
