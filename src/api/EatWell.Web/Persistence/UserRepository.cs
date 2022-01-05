@@ -23,7 +23,6 @@ namespace EatWell.API.Persistence
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Password = user.Password,
                 PasswordHash = user.PasswordHash,
                 PasswordSalt = user.PasswordSalt,
                 Status = user.Status
@@ -48,7 +47,12 @@ namespace EatWell.API.Persistence
             var user = await _eatWellContext.Users.FirstOrDefaultAsync(u => u.UserId == id);
             return user is null ? null : new(user);
         }
-
+        public async Task<GetUserResponse> GetByEmailAsync(string email)
+        {
+            var user = await _eatWellContext.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
+            return user is null ? null : new(user);
+        }
+        
         public async Task<UpdateUserResponse> UpdateUserAsync(int id, UpdateUserRequest updateRequest)
         {
             var userInList = await _eatWellContext.Users.FirstOrDefaultAsync(u => u.UserId == id);

@@ -19,11 +19,14 @@ namespace EatWell.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly ITokenHelper _tokenHelper;
+        private readonly IAuthService _authService;
 
-        public UserController(IUserService userService , ITokenHelper tokenHelper)
+        public UserController(IUserService userService , ITokenHelper tokenHelper
+            ,IAuthService authService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _authService = authService;
         }
         
         [AllowAnonymous]
@@ -56,6 +59,21 @@ namespace EatWell.API.Controllers
         {
             var result = await _userService.CreateUserAsync(createUserRequest);
 
+            return Ok(result);
+        }
+        [HttpPost("/register")]
+        [AllowAnonymous]
+        public IActionResult Register(UserForRegister userRegister)
+        {
+            var result =  _authService.Register(userRegister);
+
+            return Ok(result);
+        }
+        [HttpPost("/login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login (UserLoginRequest user)
+        {
+            var result = await  _authService.LoginAsync(user);
             return Ok(result);
         }
 

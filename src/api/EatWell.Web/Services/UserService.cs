@@ -18,6 +18,11 @@ namespace EatWell.API.Services
 
         public async Task DeleteUserAsync(int id) => await _userRepository.DeleteUserById(id);
 
+        public async Task<GetUserResponse> GetUserByEmail(string email)
+        {
+            return await _userRepository.GetByEmailAsync(email);
+        }
+
         public async Task<GetUserResponse> GetUserByIdAsync(int id) => await _userRepository.GetUserByIdAsync(id);
 
         public async Task<IEnumerable<GetUserResponse>> GetUsersAsync() => await _userRepository.GetUsersAsync();

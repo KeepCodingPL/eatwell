@@ -18,6 +18,7 @@ namespace EatWell.API
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.Json.Serialization;
 
     public class Startup
     {
@@ -51,7 +52,8 @@ namespace EatWell.API
                     .AddTransient<IUserRepository, UserRepository>()
                     .AddTransient<IProductService, ProductService>()
                     .AddTransient<IUserService,UserService>()
-                    .AddTransient<ITokenHelper, JwtHelper>();
+                    .AddTransient<ITokenHelper, JwtHelper>()
+                    .AddTransient<IAuthService,AuthService>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(x => x.SuppressMapClientErrors = true);

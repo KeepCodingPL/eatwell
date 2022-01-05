@@ -19,7 +19,6 @@ namespace EatWell.API.DTO.Responses
             FirstName = u.FirstName;
             LastName = u.LastName;
             Email = u.Email;
-            Password = u.Password;
             PasswordHash = u.PasswordHash;
             PasswordSalt = u.PasswordSalt;
             Status = u.Status;

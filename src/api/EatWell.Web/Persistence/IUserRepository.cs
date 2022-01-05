@@ -10,6 +10,7 @@ namespace EatWell.API.Persistence
     public interface IUserRepository
     {
         Task<IEnumerable<GetUserResponse>> GetUsersAsync();
+        Task<GetUserResponse> GetByEmailAsync(string email);
         Task<GetUserResponse> GetUserByIdAsync(int id);
         Task DeleteUserById(int id);
         Task<CreateUserResponse> CreateUserAsync(CreateUserRequest user);

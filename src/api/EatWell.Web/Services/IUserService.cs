@@ -11,6 +11,7 @@ namespace EatWell.API.Services
     {
         Task<IEnumerable<GetUserResponse>> GetUsersAsync();
         Task<GetUserResponse> GetUserByIdAsync(int id);
+        Task<GetUserResponse> GetUserByEmail(string email);
         Task DeleteUserAsync(int id);
         Task<CreateUserResponse> CreateUserAsync(CreateUserRequest createUserRequest);
         Task<UpdateUserResponse> UpdateUserAsync(int id, UpdateUserRequest updateUserRequest);
